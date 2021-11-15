@@ -1,0 +1,9 @@
+h1 Login
+
+form(action="/login" method="POST")
+  label(for="email") Email
+  input(type="text" id="email" name="email" required)
+  label(for="password") Password
+  input(type="text" id="password" name="password" required)
+  button(type="submit") Login
+  a(href="/users/register") Register
