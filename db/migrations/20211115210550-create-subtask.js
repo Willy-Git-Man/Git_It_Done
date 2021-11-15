@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       subName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       subStatus: {
+        default: false,
         type: Sequelize.BOOLEAN
       },
       subDate: {
@@ -21,7 +23,8 @@ module.exports = {
         type: Sequelize.TEXT
       },
       taskId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { model: 'Tasks' }
       },
       createdAt: {
         allowNull: false,

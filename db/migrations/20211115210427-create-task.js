@@ -1,3 +1,4 @@
+
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -6,13 +7,25 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
-      listName: {
+      taskName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      userId: {
-        type: Sequelize.INTEGER
+      taskStatus: {
+        default:false,
+        type: Sequelize.BOOLEAN
+      },
+      taskDate: {
+        type: Sequelize.DATE
+      },
+      taskNotes: {
+        type: Sequelize.TEXT
+      },
+      listId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'Lists' }
       },
       createdAt: {
         allowNull: false,

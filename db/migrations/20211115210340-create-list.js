@@ -8,20 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      taskName: {
+      listName: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      taskStatus: {
-        type: Sequelize.BOOLEAN
-      },
-      taskDate: {
-        type: Sequelize.DATE
-      },
-      taskNotes: {
-        type: Sequelize.TEXT
-      },
-      listId: {
-        type: Sequelize.INTEGER
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: 'Users' }
       },
       createdAt: {
         allowNull: false,
