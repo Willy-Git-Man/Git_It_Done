@@ -4,6 +4,7 @@ const {
 
 module.exports = {
   development: {
+    // logging: false,
     username,
     password,
     database,

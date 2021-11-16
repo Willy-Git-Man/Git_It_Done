@@ -1,3 +1,39 @@
 h1 {
     color: #555555;
 }
+
+.header {
+    outline: 1px solid black;
+    height: 10vh;
+}
+
+.body {
+    display: flex;
+    /* justify-content: space-around; */
+    outline: 1px solid black;
+    height: 90vh;
+    background-color: blueviolet;
+}
+
+.sidebar {
+    outline: 1px solid black;
+    width: 10vw;
+}
+
+.leftDiv {
+    outline: 1px solid black;
+    width: 42.5vw;
+    margin-left: 1.5vw;
+    margin-right: 1vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.rightDiv {
+    outline: 1px solid black;
+    width: 42.5vw;
+    margin-right: 1.5vw;
+    margin-left: 1vw;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
