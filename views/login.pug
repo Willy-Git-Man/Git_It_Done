@@ -1,12 +1,17 @@
+doctype html
+html
+  head
+    block head
+      title="Git It Done"
+      link(rel='stylesheet' href='/stylesheets/reset.css')
 
+  .loginForm
+    form(action="/users/login" method="POST")
 
-h1 Login
-
-form(action="/users/login" method="POST")
-  input(type="hidden" name="_csrf" value=csrfToken)
-  label(for="email") Email
-  input(type="text" id="email" name="email" required)
-  label(for="password") Password
-  input(type="text" id="password" name="password" required)
-  button(type="submit") Login
-  a(href="/users/register") Register
+      input(type="hidden" name="_csrf" value=csrfToken)
+      label(for="email") Email
+      input(type="text" id="email" name="email" required)
+      label(for="password") Password
+      input(type="text" id="password" name="password" required)
+      button(type="submit") Login
+      a(href="/users/register") Register

@@ -7,15 +7,15 @@ html
   body(class='container')
     div(class='header')
       form(action="/users/logout" method="POST")
-        input(type="search")
-        button Search
-        button Logout
+        input(type="search" class="headerSearchBar")
+        button(class="headerSearchButton") Go
+        button(class="logoutButton") Logout
     div(class='body')
       div(class='sidebar')
         form
           //- input#name(type='text' placeholder='Name')
-          input(type="text")
-          button#add Add to List
+          input(type="text" class="sideBarText")
+          button(class="sideBarButton") Add
 
       div(class='listDiv')
         include task.pug
