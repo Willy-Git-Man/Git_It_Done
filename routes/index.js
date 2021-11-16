@@ -10,4 +10,8 @@ router.get('/', requireAuth, (req, res, next) => {
     res.render('index', { title: 'Git It Done' });
 });
 
+// comment
+
+
+
 module.exports = router;
