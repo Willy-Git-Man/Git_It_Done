@@ -1,13 +1,16 @@
 h1 Register
 
-form(action="/register" method="POST")
-  label(for="name") Name
-  input(type="text" id="name" name="name" required)
+form(action="/users/register" method="POST")
+  input(type="hidden" name="_csrf" value=csrfToken)
+  label(for="firstName") First Name
+  input(type="text" id="firstName" name="firstName" required)
+  label(for="lastName") Last Name
+  input(type="text" id="lastName" name="lastName" required)
   label(for="email") Email
   input(type="text" id="email" name="email" required)
   label(for="password") Password
-  input(type="text" id="password" name="password" required)
+  input(type="password" id="password" name="password" required)
   label(for="confirmPassword") Confirm Password
-  input(type="text" id="confirmPassword" name="confirmPassword" required)
+  input(type="password" id="confirmPassword" name="confirmPassword" required)
   button(type="submit") Register
   a(href="/users/login") Login
