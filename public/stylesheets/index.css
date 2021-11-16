@@ -20,7 +20,7 @@ h1 {
     width: 10vw;
 }
 
-.leftDiv {
+.listDiv {
     outline: 1px solid black;
     width: 42.5vw;
     margin-left: 1.5vw;
@@ -29,12 +29,12 @@ h1 {
     margin-bottom: 5vh;
 }
 
-.rightDiv {
+.taskDiv {
     outline: 1px solid black;
     width: 42.5vw;
     margin-right: 1.5vw;
     margin-left: 1vw;
     margin-top: 5vh;
     margin-bottom: 5vh;
-    
+
 }

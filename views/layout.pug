@@ -12,8 +12,15 @@ html
         button Logout
     div(class='body')
       div(class='sidebar')
-      div(class='leftDiv')
-      div(class='rightDiv')
+        form
+          //- input#name(type='text' placeholder='Name')
+          input(type="text")
+          button#add Add to List
+
+      div(class='listDiv')
+        input(type="text" name="taskCreate")
+        button(class="addTaskButton") Add Task
+      div(class='taskDiv')
 
 
     block content
