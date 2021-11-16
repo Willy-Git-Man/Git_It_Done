@@ -78,6 +78,8 @@ body {
 
 .logoutButton:hover {
     background: var(--clr-accent);
+    background-color: rgba(25, 171, 83, .4);
+
     border: white;
     border-style: solid;
   }
@@ -141,7 +143,7 @@ body {
   .sideBarButton {
     /* padding: 10px; */
     /* border-radius: 0.35em; */
-    background-color: rgba(25, 171, 83, .5);
+    background-color: rgba(25, 171, 83, .4);
 
     height: 37.5px;
 
