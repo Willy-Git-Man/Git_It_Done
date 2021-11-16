@@ -6,10 +6,14 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body(class='container')
     div(class='header')
+      form(action="/users/logout" method="POST")
+        input(type="search")
+        button Search
+        button Logout
     div(class='body')
       div(class='sidebar')
       div(class='leftDiv')
       div(class='rightDiv')
-    
+
 
     block content
