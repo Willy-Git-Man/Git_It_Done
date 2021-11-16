@@ -4,12 +4,13 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require('../auth')
 
-router.get('/', requireAuth, asyncHandler(async (req,res) => {
+router.get('/', requireAuth, csrfProtection, asyncHandler(async (req,res) => {
   const { userId } = req.session.auth;
   const lists = await db.List.findAll({
     where: {userId: 1} // re-test when we have more lists
   });
-  res.render('index', { title: 'Git It Done', lists });
+  console.log(lists)
+  res.render('index', { title: 'Git It Done', lists, csrfToken: req.csrfToken() });
 }));
 
 router.post('/', csrfProtection, requireAuth, asyncHandler(async (req,res) => {

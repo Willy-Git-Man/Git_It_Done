@@ -111,6 +111,7 @@ const loginValidators = [
     .withMessage('Please provide a value for Password'),
 ];
 router.get("/login", csrfProtection, (req, res, next) => {
+  console.log(req.csrfToken(), 'helloworld')
   res.render("login",
     {
       title: "Login",

@@ -16,7 +16,8 @@ router.get('/', requireAuth, csrfProtection, asyncHandler(async(req, res, next) 
   //     csrfToken: req.csrfToken()
   // })
 
-    res.render('login', { title: 'Git It Done' });
+    res.render('login', { title: 'Git It Done', csrfToken: req.csrfToken() });
+
 }));
 
 module.exports = router;
