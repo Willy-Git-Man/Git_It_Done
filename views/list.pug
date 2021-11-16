@@ -1,0 +1,9 @@
+form
+  //- input#name(type='text' placeholder='Name')
+  input(type="hidden" name="_csrf" value=csrfToken)
+  input(type="text" class="sideBarText")
+  button(class="sideBarButton") Add
+
+ul
+  each list in lists
+    li=list.listName

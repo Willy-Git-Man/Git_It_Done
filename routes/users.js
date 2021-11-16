@@ -136,7 +136,7 @@ router.post('/login', loginValidators, csrfProtection,
           // If the password hashes match, then login the user
           // and redirect them to the default route.
           loginUser(req, res, user);
-          return res.redirect('/');
+          return res.redirect('/lists');
         }
       }
       // Otherwise display an error message to the user.
