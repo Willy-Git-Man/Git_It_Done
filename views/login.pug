@@ -1,6 +1,7 @@
 h1 Login
 
-form(action="/login" method="POST")
+form(action="/users/login" method="POST")
+  input(type="hidden" name="_csrf" value=csrfToken)
   label(for="email") Email
   input(type="text" id="email" name="email" required)
   label(for="password") Password
