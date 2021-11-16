@@ -12,11 +12,7 @@ html
         button(class="logoutButton") Logout
     div(class='body')
       div(class='sidebar')
-        form
-          //- input#name(type='text' placeholder='Name')
-          input(type="text" class="sideBarText")
-          button(class="sideBarButton") Add
-
+        include list.pug
       div(class='listDiv')
         include task.pug
       div(class='taskDiv')
