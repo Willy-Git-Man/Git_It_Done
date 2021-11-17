@@ -25,8 +25,11 @@ block content
   div(class='taskDiv')
     form(action=`/lists/${listId}` method="POST")
       input(type="hidden" name="_csrf" value=csrfToken)
-      input(type="text" name="taskName" class="taskName")
-      button(class="addTaskButton") Add Task
+      if listId
+        input(type="text" name="taskName" class="taskName")
+        button(class="addTaskButton") Add Task
+      else 
+        p Please select a List to add a task.
       ul
         if tasks
           each task in tasks
