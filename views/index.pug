@@ -34,12 +34,12 @@ block content
           each task in tasks
             li
               a(href=`/lists/${listId}/${task.id}`)=task.taskName
-                //- form(action=`/lists/${listId}/${task.id}/edit` method="POST")
+                form(action=`/lists/${listId}/${task.id}/edit` method="POST")
                   //- input(type="hidden" name="_csrf" value=csrfToken)
                 button(class="editButton") ✏️
-                //- form(action=`/lists/${listId}/${task.id}/delete` method="POST")
-                  //- input(type="hidden" name="_csrf" value=csrfToken)
-                button(class="deleteButton") 🗑️
+              form(action=`/lists/${listId}/${task.id}/delete` method="POST")
+                  input(type="hidden" name="taskId" value=task.id)
+                  button(class="deleteButton" type='submit') 🗑️
 
 
   div(class='sidebar')

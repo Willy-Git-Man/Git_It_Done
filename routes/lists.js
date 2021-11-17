@@ -137,6 +137,10 @@ router.post('/:listId/edit', requireAuth, asyncHandler(async(req,res) => {
 
 router.post('/:listId/:taskId/delete', requireAuth, asyncHandler(async(req,res) => {
   const listId = parseInt(req.params.listId);
+  const { taskId } = req.body
+  const taskDestroy = await db.Task.findByPk(taskId)
+  await taskDestroy.destroy()
+  res.redirect(`/lists/${listId}`)
 }))
 
 router.post('/:listId/:taskId/edit', requireAuth, asyncHandler(async(req,res) => {
