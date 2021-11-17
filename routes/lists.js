@@ -129,6 +129,13 @@ router.get(
 
 router.post('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
   const listId = parseInt(req.params.listId);
+  await db.Task.destroy({
+    where: { listId: listId },
+  });
+  await db.List.destroy({
+    where: { id: listId },
+  });
+  res.redirect('/lists')
 }))
 
 router.post('/:listId/edit', requireAuth, asyncHandler(async(req,res) => {
