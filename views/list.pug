@@ -1,8 +1,12 @@
-form(action='/lists' method='post')
-  input(type="hidden" name="_csrf" value=csrfToken)
-  input(type="text" class="listName")
-  button(class="addListButton") Add
+//- extends layout
 
-ul
-  each list in lists
-    li=list.listName
+//- block content
+//-   div(class='listDiv')
+//-     form(action='/lists' method='post')
+//-       input(type="hidden" name="_csrf" value=csrfToken)
+//-       input(type="text" class="listName")
+//-       button(class="addListButton") Add
+
+//- ul
+//-   each list in lists
+//-     li=list.listName
