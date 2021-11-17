@@ -18,7 +18,7 @@ block content
 
   div(class='taskDiv')
     form(action=`/lists/${listId}/${taskId}` method="POST")
-      input(type="text" name="taskCreate")
+      input(type="text" name="taskCreate" class="taskName")
       button(class="addTaskButton") Add Task
       table(class="taskTable")
         thread(class="taskThread")

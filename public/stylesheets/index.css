@@ -4,8 +4,10 @@ h1 {
 
 body {
     background-color: rgba(25, 171, 83, .2);
+    /* background-image: url(/images/githubBackground.png); */
 
 }
+
 
 .header {
     display: flex;
@@ -22,42 +24,167 @@ body {
     outline: 1px solid black;
     height: 95vh;
     /* background-color: blueviolet; */
+    /* background-image: url(/images/githubBackground.png); */
+
+
 }
 
 .listDiv {
     outline: 1px solid black;
-    width: 250px;
+    width: 150px;
     background-color: rgba(72, 135, 201, 0.85);
+}
 
-
+.listName {
+    width: 110px;
 }
 
 .sidebar {
     outline: 1px solid black;
-    width: 42.5vw;
-    margin-left: 1.5vw;
-    margin-right: 1vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    width: 44vw;
+    /* margin-left: 1.5vw; */
+    /* margin-right: 1vw; */
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
     background-color: rgba(25, 171, 83, .5);
 
 }
 
 .taskDiv {
     outline: 1px solid black;
-    width: 42.5vw;
-    margin-right: 1.5vw;
+    width: 44vw;
+    margin-right: 1vw;
     margin-left: 1vw;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
     background-color: rgba(25, 171, 83, .5);
 
 
 }
 
-.loginForm {
-    background-color: black;
+.taskName {
+    max-width: 35vw;
+    min-width: 30vw;
+
+    height: 35px;
+    margin-left: 15px;
+    margin-right: 2.5vw;
 }
+
+.loginFormDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    outline: 5px black solid;
+    margin-top: 100px;
+    margin-left: 40vw;
+    margin-right: 40vw;
+    border-radius: 10%;
+    /* background-image: url(/images/githubBackground.png); */
+
+
+}
+
+.loginFormDiv:hover {
+    box-shadow:  15px 15px rgba(72, 135, 201, 0.35), .25em 0 .4em rgba(72, 135, 201, 0.35);
+
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.emailLoginLabel {
+    display: flex;
+    justify-content: center;
+}
+
+.passwordLoginLabel {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.registerLoginLabel {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.loginButton {
+    margin-top: 15px;
+    height: 35px;
+    font-size: 25px;
+    background-color: rgba(72, 135, 201, 0.35);
+    border-radius: 15%;
+}
+
+
+
+.registerFormDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    outline: 5px black solid;
+    margin-top: 100px;
+    margin-left: 40vw;
+    margin-right: 40vw;
+    border-radius: 10%;
+
+}
+
+.registerFormDiv:hover {
+    box-shadow:  15px 15px rgba(72, 135, 201, 0.35), .25em 0 .4em rgba(72, 135, 201, 0.35);
+
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.registerFirstName {
+    display: flex;
+    justify-content: center;
+}
+
+.registerLastName {
+    display: flex;
+    justify-content: center;
+}
+
+.registerEmail {
+    display: flex;
+    justify-content: center;
+}
+
+.registerPassword {
+    display: flex;
+    justify-content: center;
+}
+
+.registerConfirmPassword {
+    display: flex;
+    justify-content: center;
+}
+
+.registerLoginLink {
+    display: flex;
+    justify-content: center;
+}
+
+.registerButton {
+    margin-top: 15px;
+    height: 35px;
+    font-size: 25px;
+    background-color: rgba(72, 135, 201, 0.35);
+    border-radius: 15%;
+}
+
+
+
+
 
 .logoutButton {
     position: absolute;
@@ -77,11 +204,9 @@ body {
 }
 
 .logoutButton:hover {
-    background: var(--clr-accent);
-    background-color: rgba(25, 171, 83, .4);
+    outline: 2.5px white solid;
+    background: rgba(72, 135, 201, 0.85);
 
-    border: white;
-    border-style: solid;
   }
 
   .headerSearchBar {
@@ -107,8 +232,9 @@ body {
 
   .addTaskButton {
     /* position: absolute; */
-    right: 10px;
-    top: 5px;
+    /* right: 10px;
+    top: 5px; */
+    /* height: 35px; */
     padding: 0.75em 1.5em;
     border-radius: 0.35em;
     background-color: rgba(72, 135, 201, 0.85);
@@ -118,20 +244,21 @@ body {
     padding-left: 20px;
     padding-right: 20px;
     margin-right: auto;
+    margin-top: 5px;
 
 }
 
 .addTaskButton:hover {
     background: var(--clr-accent);
-    border: white;
-    border-style: solid;
+    outline: 2.5px white solid;
+    /* border-style: solid; */
   }
 
   .taskCreate {
     /* position: absolute; */
     left: 10px;
     top: 5px;
-    width: 30vw;
+    width: 15vw;
     height: 40px;
     min-height: 2.5vh;
     margin-top: .75vh;

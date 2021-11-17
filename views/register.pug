@@ -1,16 +1,25 @@
-h1 Register
+doctype html
+html
+  head
+    block head
+      title="Git It Done"
+      link(rel='stylesheet' href='/stylesheets/index.css')
 
-form(action="/users/register" method="POST")
-  input(type="hidden" name="_csrf" value=csrfToken)
-  label(for="firstName") First Name
-  input(type="text" id="firstName" name="firstName" required)
-  label(for="lastName") Last Name
-  input(type="text" id="lastName" name="lastName" required)
-  label(for="email") Email
-  input(type="text" id="email" name="email" required)
-  label(for="password") Password
-  input(type="password" id="password" name="password" required)
-  label(for="confirmPassword") Confirm Password
-  input(type="password" id="confirmPassword" name="confirmPassword" required)
-  button(type="submit") Register
-  a(href="/users/login") Login
+
+  //- h1 Register
+
+  .registerFormDiv
+    form(action="/users/register" method="POST" class="registerForm")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      label(for="firstName" class="registerFirstName") First Name
+      input(type="text" id="firstName" name="firstName" required)
+      label(for="lastName" class="registerLastName") Last Name
+      input(type="text" id="lastName" name="lastName" required)
+      label(for="email" class="registerEmail") Email
+      input(type="text" id="email" name="email" required)
+      label(for="password" class="registerPassword") Password
+      input(type="password" id="password" name="password" required)
+      label(for="confirmPassword" class="registerConfirmPassword") Confirm Password
+      input(type="password" id="confirmPassword" name="confirmPassword" required)
+      button(type="submit" class="registerButton") Register
+      a(href="/users/login" class="registerLoginLink") Login
