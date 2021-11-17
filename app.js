@@ -11,7 +11,7 @@ const usersRouter = require('./routes/users');
 const listsRouter = require('./routes/lists');
 
 
-const { sessionSecret } = require('./config')
+const { sessionSecret, environment } = require('./config')
 
 const { userRestore } = require('./auth')
 
@@ -55,16 +55,39 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// Error handler for 404 errors.
+// app.use((err, req, res, next) => {
+//   if (err.status === 404) {
+//     res.status(404);
+//     res.render('page-not-found', {
+//       title: 'Page Not Found',
+//     });
+//   } else {
+//     next(err);
+//   }
+// });
 
-  // render the error page
+// Generic error handler.
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error');
+  const isProduction = environment === 'production';
+  res.render('error', {
+    title: 'Server Error',
+    message: isProduction ? null : err.message,
+    stack: isProduction ? null : err.stack,
+  });
 });
+
+// error handler
+// app.use(function (err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 //fakeNote
 //anotherfakenote

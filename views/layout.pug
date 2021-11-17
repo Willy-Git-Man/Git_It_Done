@@ -4,18 +4,13 @@ html
       block head
         title="Git It Done"
         link(rel='stylesheet' href='/stylesheets/reset.css')
-  body(class='container')
+  body
     div(class='header')
       form(action="/users/logout" method="POST")
         input(type="search" class="headerSearchBar")
         button(class="headerSearchButton") Go
         button(class="logoutButton") Logout
     div(class='body')
-      div(class='sidebar')
-        include list.pug
-      div(class='listDiv')
-        include task.pug
-      div(class='taskDiv')
 
 
-    block content
+      block content

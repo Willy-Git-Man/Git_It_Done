@@ -13,7 +13,7 @@ const requireAuth = (req, res, next) => {
   if (!res.locals.authenticated) {
     return res.redirect("/users/login");
   }
-  next();
+  return next();
 };
 
 const userRestore = async (req, res, next) => {
