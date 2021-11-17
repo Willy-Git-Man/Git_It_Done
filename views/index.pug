@@ -12,9 +12,10 @@ block content
       input(type="hidden" name="_csrf" value=csrfToken)
       input(type="text" name="listName" class="listName")
       button(class="addListButton") Add
-          ul
-      each list in lists
-        li=list.listName
+      ul
+        if lists
+          each list in lists
+            li=list.listName
 
   div(class='taskDiv')
     form(action=`/lists/${listId}/${taskId}` method="POST")
@@ -23,9 +24,10 @@ block content
       table(class="taskTable")
         thread(class="taskThread")
 
-    //- ul
-    //-   each task in userTasks
-    //-     li=task.taskName
+        ul
+          if userTasks
+            each task in userTasks
+              li=task.taskName
     //-     tbody
     //-         each task in tasks
     //-             tr
