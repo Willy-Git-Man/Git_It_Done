@@ -292,3 +292,15 @@ body {
     width: 175px;
     margin: 5px;
 }
+
+
+.editButton {
+    border-radius: 30%;
+
+}
+
+.deleteButton {
+    border-radius: 30%;
+
+
+}
