@@ -11,9 +11,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const lists = await db.List.findAll({
-      where: { userId: 1 }, // re-test when we have more lists
+      where: { userId: userId },
     });
-    console.log(lists);
     res.render("index", {
       title: "Git It Done",
       lists,
@@ -29,18 +28,40 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const { listName } = req.body;
-    const newList = await db.List.create({
-      listName,
-      userId,
-    });
-    res.send(newList);
-    // console.log(newList);
-    // const lists = await db.List.findAll({
-    //   where: {userId: 1} // re-test when we have more lists
-    // });
-    // res.render('index', { title: 'Git It Done', lists, csrfToken: req.csrfToken(), });
+    console.log(listName, "hello");
+    if (!listName) { // if list has no name
+      res.redirect('/lists');
+    } else {
+      const newList = await db.List.create({
+        listName,
+        userId,
+      });
+      const lists = await db.List.findAll({
+        where: { userId: userId }
+      });
+      res.render('index', { title: 'Git It Done', lists, csrfToken: req.csrfToken(), });
+    }
   })
 );
+
+router.get(
+  '/:listId',
+  requireAuth,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    // Selects a list
+    // Only shows tasks on that list
+  })
+)
+
+router.post(
+  '/:listId',
+  requireAuth,
+  csrfProtection,
+  asyncHandler(async (req, res) => {
+    // Creates new task for that list
+  })
+)
 
 router.get(
   "/:listId/:taskId",
@@ -67,6 +88,5 @@ router.get(
     });
   })
 );
-//test
-//test2
+
 module.exports = router;
