@@ -17,8 +17,8 @@ block content
           each list in lists
             li
               a(href=`/lists/${list.id}`)=list.listName
-              //- form(action=`/lists/${list.id}/edit`, method="POST")
-              button(class="editButton") ✏️
+              form(action=`/lists/${list.id}/edit`, method="POST")
+                button(class="editButton") ✏️
               form(action=`/lists/${list.id}/delete`, method="POST")
                 button(class="deleteButton") 🗑️
 
