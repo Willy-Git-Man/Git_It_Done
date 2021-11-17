@@ -40,10 +40,10 @@ app.use(
   })
 );
 
-app.use(userRestore)
 
 // create Session table if it doesn't already exist
 store.sync();
+app.use(userRestore)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

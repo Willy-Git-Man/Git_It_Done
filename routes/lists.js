@@ -29,39 +29,77 @@ router.post(
     const { userId } = req.session.auth;
     const { listName } = req.body;
     console.log(listName, "hello");
-    if (!listName) { // if list has no name
-      res.redirect('/lists');
+    if (!listName) {
+      // if list has no name
+      res.redirect("/lists");
     } else {
       const newList = await db.List.create({
         listName,
         userId,
       });
       const lists = await db.List.findAll({
-        where: { userId: userId }
+        where: { userId: userId },
       });
-      res.render('index', { title: 'Git It Done', lists, csrfToken: req.csrfToken(), });
+      res.render("index", {
+        title: "Git It Done",
+        lists,
+        csrfToken: req.csrfToken(),
+      });
     }
   })
 );
 
 router.get(
-  '/:listId',
+  "/:listId",
   requireAuth,
   csrfProtection,
   asyncHandler(async (req, res) => {
-    // Selects a list
-    // Only shows tasks on that list
+    const { userId } = req.session.auth;
+    const listId = parseInt(req.params.listId, 10);
+    console.log(typeof listId);
+    const lists = await db.List.findAll({
+      where: { userId: userId },
+    });
+    const tasks = await db.Task.findAll({
+      where: { listId: listId },
+    });
+    res.render("index", {
+      title: "Git It Done",
+      tasks,
+      lists,
+      listId,
+      csrfToken: req.csrfToken(),
+    });
   })
-)
+);
 
 router.post(
-  '/:listId',
+  "/:listId",
   requireAuth,
   csrfProtection,
   asyncHandler(async (req, res) => {
-    // Creates new task for that list
+    const { userId } = req.session.auth;
+    const { taskName } = req.body;
+    const listId = parseInt(req.params.listId, 10);
+    console.log(req.params);
+    const lists = await db.List.findAll({
+      where: { userId: userId },
+    });
+
+    if (!taskName) {
+      res.redirect(`/lists/${listId}`);
+    } else {
+      const newTask = await db.Task.create({
+        taskName,
+        listId,
+      });
+    }
+    const tasks = await db.Task.findAll({
+      where: { listId: listId },
+    });
+    res.redirect(`/lists/${listId}`);
   })
-)
+);
 
 router.get(
   "/:listId/:taskId",
@@ -70,23 +108,31 @@ router.get(
   asyncHandler(async (req, res) => {
     // console.log(req.params)
     const taskId = parseInt(req.params.taskId);
-    const listId = parseInt(req.params.taskId)
+    const listId = parseInt(req.params.listId);
     const { userId } = req.session.auth;
     const userTasks = await db.Task.findByPk(taskId, {
       where: { id: taskId },
       include: db.List,
     });
 
-    console.log(userTasks)
+    console.log(userTasks);
 
     res.render("index", {
       title: "Tasks",
       taskId,
       listId,
       userTasks,
-      csrfToken: req.csrfToken()
+      csrfToken: req.csrfToken(),
     });
   })
 );
+
+router.post('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
+  const listId = parseInt(req.params.listId);
+}))
+
+router.post('/:listId/edit', requireAuth, asyncHandler(async(req,res) => {
+
+}))
 
 module.exports = router;
