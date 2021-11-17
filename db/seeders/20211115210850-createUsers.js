@@ -8,15 +8,15 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkInsert('Users', [{
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john@doe.com',
-        hashedPassword: 'fakeString',
-        createdAt: new Date(),
-        updatedAt: new Date(),
+    return queryInterface.bulkInsert('Users', [{
+      firstName: 'test',
+      lastName: 'test',
+      email: 'test@test.com',
+      hashedPassword: '$2a$10$0rD8s.E/am2yyeMW1540O.nJcv2fCqUjRlmIeCRLsFAkzACQKcUSS',
+      createdAt: new Date(),
+      updatedAt: new Date()
 
-      }], {});
+    }], {});
   },
 
   down: (queryInterface, Sequelize) => {
@@ -26,6 +26,6 @@ module.exports = {
 
       Example:
       */
-      return queryInterface.bulkDelete('Users', null, {});
+    return queryInterface.bulkDelete('Users', null, {});
   }
 };
