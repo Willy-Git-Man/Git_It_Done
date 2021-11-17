@@ -17,12 +17,10 @@ block content
           each list in lists
             li
               a(href=`/lists/${list.id}`)=list.listName
-              //- form(action=`/lists/${list.id}/edit`, method="POST")
-              //-   input(type="hidden" name="_csrf" value=csrfToken)
-              button(class="editButton") ✏️
-              //- form(action=`/lists/${list.id}/delete`, method="POST")
-              //-   input(type="hidden" name="_csrf" value=csrfToken)
-              button(class="deleteButton") 🗑️
+              form(action=`/lists/${list.id}/edit`, method="POST")
+                button(class="editButton") ✏️
+              form(action=`/lists/${list.id}/delete`, method="POST")
+                button(class="deleteButton") 🗑️
 
   div(class='taskDiv')
     form(action=`/lists/${listId}` method="POST")
