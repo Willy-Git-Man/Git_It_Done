@@ -135,4 +135,12 @@ router.post('/:listId/edit', requireAuth, asyncHandler(async(req,res) => {
 
 }))
 
+router.post('/:listId/:taskId/delete', requireAuth, asyncHandler(async(req,res) => {
+  const listId = parseInt(req.params.listId);
+}))
+
+router.post('/:listId/:taskId/edit', requireAuth, asyncHandler(async(req,res) => {
+
+}))
+
 module.exports = router;
