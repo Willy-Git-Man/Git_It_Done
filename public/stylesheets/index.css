@@ -4,50 +4,46 @@ h1 {
 
 body {
     background-color: rgba(25, 171, 83, .2);
-    /* background-image: url(/images/githubBackground.png); */
-
+}
+a {
+    text-decoration: none;
+    color: white;
 }
 
 
 .header {
     display: flex;
-    /* justify-content: space-around; */
     outline: 1px solid black;
     height: 5vh;
     background-color: rgba(72, 135, 201, 0.85);
+    margin-left: 150px;
 
 }
 
 .body {
     display: flex;
-    /* justify-content: space-around; */
     outline: 1px solid black;
-    height: 95vh;
-    /* background-color: blueviolet; */
-    /* background-image: url(/images/githubBackground.png); */
-
-
+    height: 100vh;
 }
 
 .listDiv {
     outline: 1px solid black;
     width: 150px;
     background-color: rgba(72, 135, 201, 0.85);
+    height: 100vh;
+    margin-top: 0;
 }
 
 .listName {
-    width: 110px;
+    width: 100px;
 }
 
 .sidebar {
     outline: 1px solid black;
     width: 44vw;
-    /* margin-left: 1.5vw; */
-    /* margin-right: 1vw; */
     margin-top: 1.5vh;
     margin-bottom: 1.5vh;
     background-color: rgba(25, 171, 83, .5);
-
 }
 
 .taskDiv {
@@ -189,17 +185,23 @@ body {
 .logoutButton {
     position: absolute;
     right: 10px;
-    top: 5px;
+    left: 16.5px;
+    /* bottom: 250px; */
+
+    /* top: 5px; */
     padding: 0.75em 1.5em;
     border-radius: 0.35em;
     background-color: rgba(25, 171, 83, .5);
 
 
     color: white;
-    font-size: 15px;
+    font-size: 17.5px;
+    font-style: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 5px;
+
 
 }
 
@@ -216,16 +218,20 @@ body {
     width: 350px;
     min-height: 2.5vh;
     margin-top: .75vh;
+    margin-left: 170px;
 
   }
 
   .headerSearchButton {
-    position: absolute;
+    /* position: absolute; */
     left: 350px;
     top: 5px;
     min-height: 2.5vh;
     min-width: 2.5vw;
-    margin-top: .75vh;
+    /* margin-top: .75vh; */
+    margin-left: 375px;
+    margin-top: 15px;
+
 
   }
 
@@ -296,11 +302,57 @@ body {
 
 .editButton {
     border-radius: 30%;
+    display: flex;
+    /* flex-direction: row; */
+    margin-right: auto 0;
+
 
 }
 
 .deleteButton {
     border-radius: 30%;
-
-
 }
+
+li {
+    /* display: inline-flex;
+    flex-direction: column; */
+   outline: 5px white solid;
+    margin-top: 20px;
+    /* background-color: cadetblue; */
+    justify-content: center;
+}
+
+a:hover {
+    /* color: rgb(181, 6, 6); */
+    /* transform: scale(5);
+    box-shadow: 0 0 15px #f1eebd; */
+    color: #ffee10;
+  box-shadow: 0 0 5px #ffee10;
+  text-shadow: 0 0 5px #ffee10;
+  color: #fff;
+  transform: rotateY(360deg);
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+li:hover {
+    box-shadow:  15px 15px rgba(72, 135, 201, 0.35), .25em 0 .4em rgba(72, 135, 201, 0.35);
+}
+
+.taskDiv {
+    display: inline-block;
+    
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.taskDiv:hover {
+    box-shadow:  15px 15px rgba(72, 135, 201, 0.35), .25em 0 .4em rgba(72, 135, 201, 0.35);
+}
+/* .listDiv:hover {
+    box-shadow:  5.5px 7.5px rgba(25, 171, 83, .35), .25em 0 .4em rgba(25, 171, 83, .35);
+} */
