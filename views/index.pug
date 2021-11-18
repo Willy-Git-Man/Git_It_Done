@@ -17,10 +17,9 @@ block content
           each list in lists
             li
               a(href=`/lists/${list.id}`)=list.listName
-                form(action=`/lists/${list.id}/edit`, method="POST" class="taskForm")
-                  button(class="editButton") ✏️
-                form(action=`/lists/${list.id}/delete`, method="POST" class="taskForm")
-                  button(class="deleteButton") 🗑️
+              a(href=`/lists/${list.id}/edit`, class="editListButton") ✏️
+              form(action=`/lists/${list.id}/delete`, method="POST" class="taskForm")
+                button(class="deleteButton") 🗑️
 
   div(class='taskDiv')
     form(action=`/lists/${listId}` method="POST" )
@@ -35,12 +34,29 @@ block content
           each task in tasks
             li
               a(href=`/lists/${listId}/${task.id}`)=task.taskName
-                form(action=`/lists/${listId}/${task.id}/edit` method="POST" class="taskForm")
-                  //- input(type="hidden" name="_csrf" value=csrfToken)
-                button(class="editButton") ✏️
+              a(href=`/lists/${listId}/${task.id}/edit`, class="editTaskButton") ✏️
               form(action=`/lists/${listId}/${task.id}/delete` method="POST")
                   input(type="hidden" name="taskId" value=task.id)
                   button(class="deleteButton" type='submit') 🗑️
 
 
   div(class='sidebar')
+    if isEditList
+      form(action=`/lists/${listId}/edit` method="POST" )
+        input(type="hidden" name="_csrf" value=csrfToken)
+        input(type="text" name="listName" class="listName")
+        button(class="saveButton") Save
+
+    if isEditTask
+      form(action=`/lists/${listId}/${taskId}/edit` method="POST" )
+        input(type="hidden" name="_csrf" value=csrfToken)
+        label(for="taskName") Task Name
+        input(type="text" name="taskName" class="taskName")
+        select(name="taskStatus", id="taskStatus") Task Status
+          option(value="true") Complete
+          option(value="false" selected="selected") Incomplete
+        label(for="taskDate") Due Date
+        input(type="date" name="taskDate" class="taskDate")
+        label(for="taskNotes") Task Notes
+        textarea(name="taskNotes" id="taskNotes")
+        button(class="saveButton") Save
