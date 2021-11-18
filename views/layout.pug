@@ -7,9 +7,11 @@ html
   body
     div(class='header')
       form(action="/users/logout" method="POST")
-        input(type="search" class="headerSearchBar")
-        button(class="headerSearchButton") Search
         button(class="logoutButton") Logout
+      form(action="/search" method="POST")
+        input(type="text" name="taskName" class="headerSearchBar")
+        input(type='hidden' name='_csrf' value=csrfToken)
+        button(class="headerSearchButton") Search
     div(class='body')
 
 
