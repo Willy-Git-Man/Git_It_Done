@@ -17,9 +17,10 @@ block content
           each list in lists
             li
               a(href=`/lists/${list.id}`)=list.listName
-              a(href=`/lists/${list.id}/edit`, class="editListButton") ✏️
-              form(action=`/lists/${list.id}/delete`, method="POST" class="taskForm")
-                button(class="deleteButton") 🗑️
+              a(href=`/lists/${list.id}/edit` class="editListButton") ✏️
+              a(href=`/lists/${list.id}/delete` class="deleteListButton") 🗑️
+              //- form(action=`/lists/${list.id}/delete` method="POST" class="listForm")
+              //-   button(class="deleteButton") 🗑️
 
   div(class='taskDiv')
     form(action=`/lists/${listId}` method="POST" )
@@ -33,11 +34,16 @@ block content
         if tasks
           each task in tasks
             li
-              a(href=`/lists/${listId}/${task.id}`)=task.taskName
-              a(href=`/lists/${listId}/${task.id}/edit`, class="editTaskButton") ✏️
-              form(action=`/lists/${listId}/${task.id}/delete` method="POST")
-                  input(type="hidden" name="taskId" value=task.id)
-                  button(class="deleteButton" type='submit') 🗑️
+              if task.taskStatus === true
+                a(href=`/lists/${listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${listId}/${task.id}/incomplete`, class="incompleteButton") ⎌
+                a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+              else
+                a(href=`/lists/${listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${listId}/${task.id}/edit`, class="editTaskButton") ✏️
+                a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+              //- form(action=`/lists/${listId}/${task.id}/delete` method="POST" class="taskForm")
+              //-   button(class="deleteButton") 🗑️
 
 
   div(class='sidebar')
@@ -51,12 +57,19 @@ block content
       form(action=`/lists/${listId}/${taskId}/edit` method="POST" )
         input(type="hidden" name="_csrf" value=csrfToken)
         label(for="taskName") Task Name
-        input(type="text" name="taskName" class="taskName")
+        input(type="text" name="taskName" class="taskName" value=task.taskName)
         select(name="taskStatus", id="taskStatus") Task Status
           option(value="true") Complete
           option(value="false" selected="selected") Incomplete
         label(for="taskDate") Due Date
-        input(type="date" name="taskDate" class="taskDate")
+        input(type="date" name="taskDate" class="taskDate" value=task.taskDate)
         label(for="taskNotes") Task Notes
-        textarea(name="taskNotes" id="taskNotes")
+        textarea(name="taskNotes" id="taskNotes")=task.taskNotes
         button(class="saveButton") Save
+
+    if isTaskDetails
+      H1=task.taskName
+      ul
+        li Status: #{task.taskStatus}
+        li Due Date: #{task.taskDate}
+        li Notes: #{task.taskNotes}

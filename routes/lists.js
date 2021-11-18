@@ -4,6 +4,8 @@ const db = require("../db/models");
 const { csrfProtection, asyncHandler } = require("./utils");
 const { requireAuth } = require("../auth");
 
+// GET ALL LISTS
+
 router.get(
   "/",
   requireAuth,
@@ -22,6 +24,8 @@ router.get(
   })
 );
 
+// CREATE A NEW LIST
+
 router.post(
   "/",
   csrfProtection,
@@ -29,7 +33,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const { listName } = req.body;
-    console.log(listName, "hello");
     if (!listName) {
       // if list has no name
       res.redirect("/lists");
@@ -51,6 +54,8 @@ router.post(
   })
 );
 
+// GET ALL TASKS FOR A LIST
+
 router.get(
   "/:listId",
   requireAuth,
@@ -58,7 +63,6 @@ router.get(
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const listId = parseInt(req.params.listId, 10);
-    console.log(typeof listId);
     const lists = await db.List.findAll({
       where: { userId: userId },
       order: ['id']
@@ -77,6 +81,8 @@ router.get(
   })
 );
 
+// ADD A TASK TO A LIST
+
 router.post(
   "/:listId",
   requireAuth,
@@ -85,7 +91,6 @@ router.post(
     const { userId } = req.session.auth;
     const { taskName } = req.body;
     const listId = parseInt(req.params.listId, 10);
-    console.log(req.params);
     const lists = await db.List.findAll({
       where: { userId: userId },
       order: ['id']
@@ -108,35 +113,41 @@ router.post(
   })
 );
 
+// GET THE DETAILS FOR A TASK (INCOMPLETE)
+
 router.get(
   "/:listId/:taskId(\\d+)",
   csrfProtection,
   requireAuth,
   asyncHandler(async (req, res) => {
-    // console.log(req.params)
     const taskId = parseInt(req.params.taskId);
     const listId = parseInt(req.params.listId);
-
     const { userId } = req.session.auth;
-    const userTasks = await db.Task.findByPk(taskId, {
-      where: { id: taskId },
-      include: db.List,
-      order: ['id']
+    const task = await db.Task.findByPk(taskId);
+    const lists = await db.List.findAll({
+      where: { userId: userId },
+      order: ['id'],
     });
-
-    console.log(userTasks);
-
+    const tasks = await db.Task.findAll({
+      order: ['id'],
+    });
+    const isTaskDetails = true;
     res.render("index", {
       title: "Tasks",
       taskId,
       listId,
-      userTasks,
+      lists,
+      tasks,
+      task,
+      isTaskDetails,
       csrfToken: req.csrfToken(),
     });
   })
 );
 
-router.post('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
+// DELETE A LIST
+
+router.get('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
   const listId = parseInt(req.params.listId);
   const list = await db.List.findOne({
     where: { id: listId },
@@ -146,9 +157,13 @@ router.post('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
   res.redirect('/lists')
 }))
 
+//  GET FORM TO EDIT A LIST
+
 router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+  const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
   const lists = await db.List.findAll({
+    where: { userId: userId },
     order: ['id'],
   });
   const tasks = await db.Task.findAll({
@@ -165,6 +180,8 @@ router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,
   })
 }))
 
+//  SUBMIT FORM TO EDIT A LIST
+
 router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
   const listId = parseInt(req.params.listId);
   const list = await db.List.findByPk(listId);
@@ -177,27 +194,33 @@ router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req
   res.redirect(`/lists/${listId}`)
 }))
 
-router.post('/:listId/:taskId/delete', requireAuth, asyncHandler(async(req,res) => {
+// DELETE A TASK
+
+router.get('/:listId/:taskId/delete', requireAuth, asyncHandler(async(req,res) => {
   const listId = parseInt(req.params.listId);
-  const { taskId } = req.body
-  // const { taskId } = parseInt(req.params.taskId);
+  // const { taskId } = req.body
+  const taskId = parseInt(req.params.taskId);
   const taskDestroy = await db.Task.findByPk(taskId)
   await taskDestroy.destroy()
   res.redirect(`/lists/${listId}`)
 }))
 
+// GET FORM TO EDIT A TASK
+
 router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+  const { userId } = req.session.auth;
   const taskId = parseInt(req.params.taskId);
   const listId = parseInt(req.params.listId);
   const isEditTask = true;
   const lists = await db.List.findAll({
+    where: { userId: userId },
     order: ['id'],
   });
   const tasks = await db.Task.findAll({
-    where: {listId},
+    where: {listId: listId},
     order: ['id'],
   });
-
+  const task = await db.Task.findByPk(taskId);
   res.render(`index`, {
     title: "Edit Task",
     taskId,
@@ -205,9 +228,12 @@ router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(as
     lists,
     tasks,
     listId,
+    task,
     csrfToken: req.csrfToken(),
   })
 }))
+
+//  SUBMIT FORM TO EDIT A TASK
 
 router.post('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
   const taskId = parseInt(req.params.taskId);
@@ -226,6 +252,18 @@ router.post('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(a
       taskNotes
     })
   }
+  res.redirect(`/lists/${listId}`)
+}))
+
+// MARK COMPLETED TASK AS INCOMPLETE
+
+router.get('/:listId/:taskId/incomplete', requireAuth, asyncHandler(async(req,res) => {
+  const taskId = parseInt(req.params.taskId);
+  const task = await db.Task.findByPk(taskId)
+  const listId = parseInt(req.params.listId);
+  await task.update({
+    taskStatus: false
+  })
   res.redirect(`/lists/${listId}`)
 }))
 
