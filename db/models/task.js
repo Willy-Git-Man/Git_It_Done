@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'listId'
     }),
     Task.hasMany(models.Subtask, {
-      foreignKey: 'taskId'
+      foreignKey: 'taskId',
+      onDelete: 'CASCADE',
+      hooks: true
     })
   };
   return Task;
