@@ -147,19 +147,26 @@ router.get(
 
 // DELETE A LIST
 
-router.get('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
+router.get('/:listId/delete', requireAuth, asyncHandler(async (req, res) => {
+  console.log("DELETE ROUTE HIT")
+  const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
-  const list = await db.List.findOne({
-    where: { id: listId },
-    order: ['id']
-  })
+  const list = await db.List.findByPk(listId)
   await list.destroy()
-  res.redirect('/lists')
+  // const newList = await db.List.findAll({where: {userId}})
+  return res.json({ listId })
+  // const listId = parseInt(req.params.listId);
+  // const list = await db.List.findOne({
+  //   where: { id: listId },
+  //   order: ['id']
+  // })
+  // await list.destroy()
+  // res.redirect('/lists')
 }))
 
 //  GET FORM TO EDIT A LIST
 
-router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
   const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
   const lists = await db.List.findAll({
@@ -182,11 +189,11 @@ router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,
 
 //  SUBMIT FORM TO EDIT A LIST
 
-router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
   const listId = parseInt(req.params.listId);
   const list = await db.List.findByPk(listId);
-  const {listName} = req.body;
-  if (listName){
+  const { listName } = req.body;
+  if (listName) {
     await list.update({
       listName
     })
@@ -196,18 +203,25 @@ router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async(req
 
 // DELETE A TASK
 
-router.get('/:listId/:taskId/delete', requireAuth, asyncHandler(async(req,res) => {
+router.get('/:listId/:taskId/delete', requireAuth, asyncHandler(async (req, res) => {
+  // const listId = parseInt(req.params.listId);
+  // const taskId = parseInt(req.params.taskId);
+  // const taskDestroy = await db.Task.findByPk(taskId)
+  // await taskDestroy.destroy()
+  // res.redirect(`/lists/${listId}`)
   const listId = parseInt(req.params.listId);
-  // const { taskId } = req.body
   const taskId = parseInt(req.params.taskId);
-  const taskDestroy = await db.Task.findByPk(taskId)
-  await taskDestroy.destroy()
-  res.redirect(`/lists/${listId}`)
+  console.log(taskId)
+  const task = await db.Task.findByPk(taskId)
+  console.log(task)
+  await task.destroy()
+  // const newTask = await db.Task.findAll({ where: { listId } })
+  return res.json({ taskId })
 }))
 
 // GET FORM TO EDIT A TASK
 
-router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
   const { userId } = req.session.auth;
   const taskId = parseInt(req.params.taskId);
   const listId = parseInt(req.params.listId);
@@ -217,7 +231,7 @@ router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(as
     order: ['id'],
   });
   const tasks = await db.Task.findAll({
-    where: {listId: listId},
+    where: { listId: listId },
     order: ['id'],
   });
   const task = await db.Task.findByPk(taskId);
@@ -235,16 +249,16 @@ router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(as
 
 //  SUBMIT FORM TO EDIT A TASK
 
-router.post('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async(req,res) => {
+router.post('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
   const taskId = parseInt(req.params.taskId);
   const task = await db.Task.findByPk(taskId)
   const listId = parseInt(req.params.listId);
   const taskName = req.body.taskName || task.taskName;
   const taskStatus = req.body.taskStatus || task.taskStatus;
-  const taskDate = req.body.taskDate|| task.taskDate;
+  const taskDate = req.body.taskDate || task.taskDate;
   const taskNotes = req.body.taskNotes || task.taskNotes;
 
-  if (taskName){
+  if (taskName) {
     await task.update({
       taskName,
       taskStatus,
@@ -257,7 +271,7 @@ router.post('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(a
 
 // MARK COMPLETED TASK AS INCOMPLETE
 
-router.get('/:listId/:taskId/incomplete', requireAuth, asyncHandler(async(req,res) => {
+router.get('/:listId/:taskId/incomplete', requireAuth, asyncHandler(async (req, res) => {
   const taskId = parseInt(req.params.taskId);
   const task = await db.Task.findByPk(taskId)
   const listId = parseInt(req.params.listId);
