@@ -200,6 +200,7 @@ a {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding-left: 25px;
     padding-right: 25px;
+    padding-top: 25px;
     margin-top: 5px;
 
 
@@ -345,7 +346,7 @@ li:hover {
 
 .taskDiv {
     display: inline-block;
-    
+
     scrollbar-width: none;
     overflow-y: scroll;
 }
@@ -356,3 +357,39 @@ li:hover {
 /* .listDiv:hover {
     box-shadow:  5.5px 7.5px rgba(25, 171, 83, .35), .25em 0 .4em rgba(25, 171, 83, .35);
 } */
+
+
+.loginFooter {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    margin-top: 1000px;
+    margin-right: 250px;
+    margin-left: 250px;
+
+}
+
+.loginFooter a {
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+.splashFooter {
+   position: absolute;
+   display: flex;
+   justify-content: space-around;
+   margin-top: 90vh;
+   background-color: rgba(72, 135, 201, 0.35);
+
+}
+
+.splashFooter a {
+    justify-content: center;
+    margin-right: 2.5vw;
+    margin-left: 2.5vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+
+}

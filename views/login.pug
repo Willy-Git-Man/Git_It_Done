@@ -15,3 +15,15 @@ html
       input(type="text" id="password" name="password" required)
       button(type="submit" class="loginButton") Login
       a(href="/users/register" class="registerLoginLabel") Register
+
+  form(action="/users/login" method="POST")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      input(type="hidden" name="email" value="test@test.com")
+      input(type="hidden" name="password" value="Password!1")
+      button Demo User
+
+footer(class="loginFooter")
+  a(href="https://github.com/rogdylan98") Dylan Silva
+  a(href="https://github.com/andrwtran") Andrew Tran
+  a(href="https://github.com/zestefano") Zachery Estefano
+  a(href="https://github.com/Willy-Git-Man") Will Grossman
