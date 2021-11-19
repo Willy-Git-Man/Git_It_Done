@@ -148,13 +148,21 @@ router.get(
 // DELETE A LIST
 
 router.get('/:listId/delete', requireAuth, asyncHandler(async(req,res) => {
+  console.log('helloWorld')
+  const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
-  const list = await db.List.findOne({
-    where: { id: listId },
-    order: ['id']
-  })
+  const list = await db.List.findByPk(listId)
   await list.destroy()
-  res.redirect('/lists')
+  const newList = await db.List.findAll({where: {userId}})
+  return res.json({newList})
+  
+  // const listId = parseInt(req.params.listId);
+  // const list = await db.List.findOne({
+  //   where: { id: listId },
+  //   order: ['id']
+  // })
+  // await list.destroy()
+  // res.redirect('/lists')
 }))
 
 //  GET FORM TO EDIT A LIST
