@@ -3,6 +3,8 @@ extends layout
 append head
   link(rel="stylesheet" href="/stylesheets/index.css")
   script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/deleteListScript.js" type="module" defer)
+  script(src="/javascripts/deleteTaskScript.js" type="module" defer)
 
 block content
 
@@ -15,10 +17,11 @@ block content
       ul
         if lists
           each list in lists
-            li
+            li(id=`list-${list.id}`)
               a(href=`/lists/${list.id}`)=list.listName
               a(href=`/lists/${list.id}/edit` class="editListButton") ✏️
-              a(href=`/lists/${list.id}/delete` class="deleteListButton") 🗑️
+              button(class="deleteListButton" id=`${list.id}-delete`) 🗑️
+              //- a(href=`/lists/${list.id}/delete` class=`${list.id}-deleteListButton`) 🗑️
               //- form(action=`/lists/${list.id}/delete` method="POST" class="listForm")
               //-   button(class="deleteButton") 🗑️
 
@@ -33,15 +36,17 @@ block content
       ul
         if tasks
           each task in tasks
-            li
+            li(id=`task-${task.id}`)
               if task.taskStatus === true
                 a(href=`/lists/${listId}/${task.id}`)=task.taskName
                 a(href=`/lists/${listId}/${task.id}/incomplete`, class="incompleteButton") ⎌
-                a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+                //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+                button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               else
                 a(href=`/lists/${listId}/${task.id}`)=task.taskName
                 a(href=`/lists/${listId}/${task.id}/edit`, class="editTaskButton") ✏️
-                a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+                //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
+                button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               //- form(action=`/lists/${listId}/${task.id}/delete` method="POST" class="taskForm")
               //-   button(class="deleteButton") 🗑️
 
