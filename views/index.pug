@@ -38,13 +38,13 @@ block content
           each task in tasks
             li(id=`task-${task.id}`)
               if task.taskStatus === true
-                a(href=`/lists/${listId}/${task.id}`)=task.taskName
-                a(href=`/lists/${listId}/${task.id}/incomplete`, class="incompleteButton") ⎌
+                a(href=`/lists/${task.listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ⎌
                 //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               else
-                a(href=`/lists/${listId}/${task.id}`)=task.taskName
-                a(href=`/lists/${listId}/${task.id}/edit`, class="editTaskButton") ✏️
+                a(href=`/lists/${task.listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${task.listId}/${task.id}/edit`, class="editTaskButton") ✏️
                 //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               //- form(action=`/lists/${listId}/${task.id}/delete` method="POST" class="taskForm")

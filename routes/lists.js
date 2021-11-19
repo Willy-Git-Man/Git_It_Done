@@ -129,6 +129,7 @@ router.get(
       order: ['id'],
     });
     const tasks = await db.Task.findAll({
+      where: { listId },
       order: ['id'],
     });
     const isTaskDetails = true;
