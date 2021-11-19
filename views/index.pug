@@ -39,7 +39,7 @@ block content
             li(id=`task-${task.id}`)
               if task.taskStatus === true
                 a(href=`/lists/${task.listId}/${task.id}`)=task.taskName
-                a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ⎌
+                a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ✅
                 //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               else
@@ -78,3 +78,10 @@ block content
         li Status: #{task.taskStatus}
         li Due Date: #{task.taskDate}
         li Notes: #{task.taskNotes}
+
+
+    footer(class="splashFooter")
+      a(href="https://github.com/rogdylan98") Dylan Silva
+      a(href="https://github.com/andrwtran") Andrew Tran
+      a(href="https://github.com/zestefano") Zachery Estefano
+      a(href="https://github.com/Willy-Git-Man") Will Grossman

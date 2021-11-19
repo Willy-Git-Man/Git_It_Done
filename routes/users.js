@@ -88,7 +88,7 @@ router.post(
       user.hashedPassword = hashPassword;
       await user.save();
       loginUser(req, res, user);
-      return res.redirect("/users/login");
+      return res.redirect("/lists");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
       console.log(errors)
