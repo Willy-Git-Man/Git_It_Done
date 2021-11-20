@@ -7,7 +7,7 @@ html
   body
     div(class='header')
       form(action="/search" method="POST")
-        h1(class="logo") Git It Done
+        a(class="logo" href='/lists') Git It Done
         input(type="text" name="taskName" class="headerSearchBar")
         input(type='hidden' name='_csrf' value=csrfToken)
         button(class="headerSearchButton") Search Tasks
