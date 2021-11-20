@@ -83,6 +83,7 @@ router.post(
     const { firstName, lastName, email, password } = req.body;
     const user = await db.User.build({ firstName, lastName, email });
     const validatorErrors = validationResult(req);
+    console.log(validatorErrors)
     if (validatorErrors.isEmpty()) {
       const hashPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashPassword;
