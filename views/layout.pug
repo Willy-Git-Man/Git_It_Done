@@ -6,12 +6,13 @@ html
         link(rel='stylesheet' href='/stylesheets/reset.css')
   body
     div(class='header')
-      form(action="/users/logout" method="POST")
-        button(class="logoutButton") Logout
       form(action="/search" method="POST")
+        h1(class="logo") Git It Done
         input(type="text" name="taskName" class="headerSearchBar")
         input(type='hidden' name='_csrf' value=csrfToken)
-        button(class="headerSearchButton") Search
+        button(class="headerSearchButton") Search Tasks
+      form(action="/users/logout" method="POST")
+        button(class="logoutButton") Logout
     div(class='body')
 
 
