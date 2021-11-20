@@ -75,7 +75,10 @@ block content
     if isTaskDetails
       H1=task.taskName
       ul
-        li Status: #{task.taskStatus}
+        if task.taskStatus === false
+          li Status: Incomplete
+        else
+          li Status: Complete
         li Due Date: #{task.taskDate}
         li Notes: #{task.taskNotes}
 
