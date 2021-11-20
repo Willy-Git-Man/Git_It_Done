@@ -42,6 +42,7 @@ a {
 }
 
 .sidebar {
+  color: white;
   outline: 1px solid black;
   width: 44vw;
   margin-top: 1.5vh;
