@@ -430,6 +430,8 @@ h1 {
 }
 
 .pleaseAddTask {
+    margin-top: 85px;
+    text-align: center;
     color: white;
 }
 
