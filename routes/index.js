@@ -9,15 +9,7 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 
 router.get('/', requireAuth, csrfProtection, asyncHandler(async(req, res, next) => {
-  // const tasks = await db.Task.findAll();
-  // console.log(tasks)
-  // res.render('index', {
-  //     tasks,
-  //     csrfToken: req.csrfToken()
-  // })
-
-    res.render('login', { title: 'Git It Done', csrfToken: req.csrfToken() });
-
+  res.render('login', { title: 'Git It Done', csrfToken: req.csrfToken() });
 }));
 
 module.exports = router;

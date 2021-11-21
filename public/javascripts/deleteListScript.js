@@ -2,30 +2,24 @@ const deleteListButton = document.querySelectorAll('.deleteListButton');
 
 deleteListButton.forEach(element => element.addEventListener('click', async (e) => {
   e.preventDefault();
-  const listName = e.target.id.split('-')[0]
-  const data = await fetch(`/lists/${listName}/delete`, {
+  const listId = e.target.id.split('-')[0]
+  const data = await fetch(`/lists/${listId}/delete`, {
     headers: { 'Content-Type': 'application/json' },
   })
   if (!data.ok) throw data
-  const {listId} = await data.json()
-  // console.log(listId);
+  const { taskCount, completedCount } = await data.json()
   document.querySelector(`#list-${listId}`).remove();
-
-  // const listUl = document.querySelector('ul')
-  // const listHtml = lists.newList.map(list => {
-  //     return `<li>
-  //     <a href="/lists/${list.id}"> ${list.listName} </a>
-  //     <a href="/lists/${list.id}/edit"> ✏️ </a>
-  //     <button class="deleteListButton" id="${list.id}-delete"> 🗑️ </button>
-  //     </li>`
-  // })
-
-  // listUl.innerHTML = ''
-  // listUl.innerHTML = listHtml.join('')
-  // const deleteListButton = document.querySelectorAll('.deleteListButton');
-  // if (deleteListButton ) {
-  //   deleteListButton .forEach((button) => {
-  //     button.addEventListener("click", button.id);
-  //   });
-  // }
+  const taskDiv = document.querySelector('.taskDiv');
+  const sideBar = document.querySelector('.sidebar');
+  taskDiv.innerHTML = '';
+  taskDiv.innerHTML = '<p class="pleaseSelect">Please select a List to view your tasks.</p>';
+  sideBar.innerHTML = '';
+  sideBar.innerHTML = `
+    <div class="listSummary">
+        <H1> Total Summary </H1>
+        <p> Total: ${taskCount} tasks </p>
+        <p> Complete: ${completedCount} tasks </p>
+        <p> Incomplete: ${taskCount - completedCount} tasks </p>
+    </div>
+  `;
 }))

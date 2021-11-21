@@ -92,9 +92,4 @@ app.use((err, req, res, next) => {
 //   res.render('error');
 // });
 
-//fakeNote
-//anotherfakenote
-//anotherfakenote
-
-
 module.exports = app;

@@ -3,23 +3,11 @@ h1 {
 }
 
 body {
-  /* background-color: rgba(25, 171, 83, 0.6); */
-  background-color: rgba(72, 135, 201, 0.6);
-
-  /* background-color: white; */
-}
-a {
+  /* background-color: rgba(72, 135, 201, 0.6); */
+  background-color:rgba(235, 234, 236, 1);
   text-decoration: none;
-  color: white;
+  color:rgba(70, 53, 208, 1);
 }
-
-/* .header {
-  display: flex;
-  align-items: center;
-  outline: 1px solid black;
-  height: 50px;
-  background-color: rgba(72, 135, 201, 0.85);
-} */
 
 .body {
   display: flex;
@@ -28,17 +16,76 @@ a {
 }
 
 .listDiv {
+  display: flex;
+  flex-direction: column;
   outline: 1px solid black;
   width: 150px;
-  background-color: rgba(1, 41, 84, 0.85);
+  background-color: rgba(235, 234, 236, 1);
   outline: 2.5px solid white;
-
   height: 100vh;
   margin-top: 1px;
 }
 
+input.addListName {
+  width: 95%;
+  margin-top: 10px;
+  margin-left: 3px;
+  align-self: center;
+  overflow: hidden;
+}
+
+.addListButton {
+  align-self: center;
+  width: 80%;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  margin-left: 12px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style: none;
+}
+
+li {
+  /* border: rgba(72, 135, 201, 0.9);
+  border-style: solid;
+  border-width: 2.5px;
+  border-left: none;
+  border-right: none;
+  margin-top: 20px;
+  justify-content: center; */
+  display: inline-flex;
+  justify-content: space-around;
+  width: 98%;
+}
+
+li:hover{
+  background-color: rgba(72, 135, 201, 0.35);
+}
+
 .listName {
-  width: 150px;
+  align-items: flex-start;
+  min-width: 50%;
+  /* margin-left: 2px; */
+}
+
+.editListButton {
+  align-items: flex-end;
+  /* margin-left: 5px; */
+  text-decoration: none;
+}
+
+.incompleteButton {
+  align-items: flex-end;
+  text-decoration: none;
+}
+
+.deleteListButton {
+  align-items: flex-end;
+  /* margin-right: 2px; */
 }
 
 .sidebar {
@@ -47,43 +94,78 @@ a {
   width: 44vw;
   margin-top: 1.5vh;
   margin-bottom: 1.5vh;
-  /* background-color: rgba(6, 83, 165, 0.95); */
   background-color: rgba(1, 41, 84, 0.85);
   outline: 2.5px solid white;
+  color: white;
+}
 
-
-
+.taskDetails > P {
+  margin-left: 5px;
 }
 
 .taskDiv {
+  display: flex;
+  flex-direction: column;
   outline: 2.5px solid white;
   width: 44vw;
   min-width: 300px;
   margin-right: 1vw;
   margin-left: 1vw;
   margin-right: 1vw;
-
   margin-top: 1.5vh;
   margin-bottom: 1.5vh;
-  /* background-color: rgba(6, 83, 165, 0.95);
-   */
-   background-color: rgba(1, 41, 84, 0.85);
+  background-color: rgba(1, 41, 84, 0.85);
+  color: rgba(235, 234, 236, 1);
+}
 
+input.addTaskName {
+  width: 60%;
+  margin-top: 10px;
+  margin-left: 48px;
+  align-self: center;
+  overflow: hidden;
+}
 
+button.addTaskButton {
+  align-self: center;
+  width: 20%;
+  margin-top: 5px;
+  margin-bottom: 25px;
+  margin-left: 8px;
 }
 
 .taskName {
-  /* max-width: 35vw;
-  min-width: 30vw;
+  width: 300px;
+  align-self: flex-start;
+  overflow: hidden;
+}
 
-  height: 35px;
-  margin-left: 15px;
-  margin-right: 2.5vw; */
+.taskName.complete {
+  text-decoration: line-through;
+}
 
-  width: 37.5vw;
-  /* min-width: 300px; */
-  /* margin-right: 1vw; */
+.editTaskButton {
+  align-self: flex-end;
+  /* margin-right: 1px; */
+  text-decoration: none;
+}
 
+.deleteTaskButton {
+  align-self: flex-end;
+  /* margin-right: 1px; */
+}
+
+.loginLogo {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginImg{
+  height: auto;
+  width: auto;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .loginFormDiv {
@@ -91,17 +173,16 @@ a {
   flex-direction: row;
   justify-content: center;
   outline: 5px black solid;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 40vw;
   margin-right: 40vw;
   border-radius: 10%;
-  /* background-image: url(/images/githubBackground.png); */
 }
 
-.loginFormDiv:hover {
+/* .loginFormDiv:hover {
   box-shadow: 15px 15px rgba(72, 135, 201, 0.35),
     0.25em 0 0.4em rgba(72, 135, 201, 0.35);
-}
+} */
 
 .loginForm {
   display: flex;
@@ -111,6 +192,7 @@ a {
 .emailLoginLabel {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .passwordLoginLabel {
@@ -123,14 +205,46 @@ a {
   display: flex;
   justify-content: center;
   margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.registerLogo {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registerImg{
+  height: auto;
+  width: auto;
+  max-width: 450px;
+  max-height: 450px;
+}
+
+button .loginButtonTxt2 {
+  display: none;
+}
+
+.loginButton:hover .loginButtonTxt1 {
+  display: none;
+}
+
+.loginButton:hover .loginButtonTxt2 {
+  display: inline;
 }
 
 .loginButton {
   margin-top: 15px;
-  height: 35px;
-  font-size: 25px;
+  height: 30px;
+  font-size: 20px;
   background-color: rgba(72, 135, 201, 0.35);
-  border-radius: 15%;
+  border-radius: 10%;
+}
+
+.loginButton:hover {
+  background-color: rgba(72, 135, 201, 0.35);
+  box-shadow:  7.5px 7.5px 7.5px rgba(72, 135, 201, 0.35);
+  transition: 220ms all ease-in-out;
 }
 
 .registerFormDiv {
@@ -138,16 +252,16 @@ a {
   flex-direction: row;
   justify-content: center;
   outline: 5px black solid;
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 40vw;
   margin-right: 40vw;
   border-radius: 10%;
 }
 
-.registerFormDiv:hover {
+/* .registerFormDiv:hover {
   box-shadow: 15px 15px rgba(72, 135, 201, 0.35),
     0.25em 0 0.4em rgba(72, 135, 201, 0.35);
-}
+} */
 
 .registerForm {
   display: flex;
@@ -157,6 +271,7 @@ a {
 .registerFirstName {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
 }
 
 .registerLastName {
@@ -182,128 +297,90 @@ a {
 .registerLoginLink {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .registerButton {
   margin-top: 15px;
-  height: 35px;
-  font-size: 25px;
+  height: 30px;
+  font-size: 20px;
   background-color: rgba(72, 135, 201, 0.35);
   border-radius: 15%;
 }
 
+.registerButton:hover {
+  background-color: rgba(72, 135, 201, 0.35);
+  box-shadow:  7.5px 7.5px 7.5px rgba(72, 135, 201, 0.35);
+  transition: 220ms all ease-in-out;
+}
+
+button .registerButtonTxt2 {
+  display: none;
+}
+
+.registerButton:hover .registerButtonTxt1 {
+  display: none;
+}
+
+.registerButton:hover .registerButtonTxt2 {
+  display: inline;
+}
 
 .header {
-    display: flex;
-    align-items: center;
-    outline: 1px solid black;
-    height: 50px;
-    background-color: rgba(1, 41, 84, 0.85);
-    outline: 2.5px solid white;
-  }
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .logoutButton {
-  /* right: 10px; */
-  /* left: 16.5px; */
-  /* border-radius: 0.35em;
-  background-color: rgba(25, 171, 83, 0.5);
-  color: white;
-  font-size: 17.5px;
-  font-style: bold;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding-left: 25px;
-  padding-right: 25px;
-  margin-top: 5px; */
-  position: absolute;
-  right: 0;
-  top: 5px;
   min-height: 2.5vh;
   min-width: 2.5vw;
-  margin-right: 0;
+  margin-right: 5px;
   margin-left: auto;
+  margin-top: 15px;
 }
 
 .headerSearchButton {
-    position: absolute;
-    left: 500px;
-    top: 5px;
     min-height: 2.5vh;
     min-width: 2.5vw;
-    /* margin-top: 15px; */
   }
 
 .logoutButton:hover {
   outline: 2.5px white solid;
-  background: rgba(72, 135, 201, 0.85);
+  /* background: rgba(72, 135, 201, 0.85); */
 }
 
 .headerSearchBar {
-    position: absolute;
-    left: 161.5px;
-    top: 5px;
+    margin-top: 15px;
     width: 340px;
     min-height: 2.5vh;
     min-width: 2.5vw;
+    margin-right: 5px;
 }
 
+.searchResults {
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
 
+.taskName {
+ width: 80%;
+}
 
 .addTaskButton {
-  /* position: absolute; */
-  /* right: 10px;
-    top: 5px; */
-  /* height: 35px; */
-  /* padding: 0.75em 1.5em;
-  border-radius: 0.35em;
-  background-color: rgba(72, 135, 201, 0.85);
-  color: white;
-  font-size: 15px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-right: auto;
-  margin-top: 5px; */
-  float: right;
-  width: 5vw;
-  /* min-width: 300px; */
-}
-
-.addTaskButton:hover {
-  background: var(--clr-accent);
-  outline: 2.5px white solid;
-  /* border-style: solid; */
-}
-
-.taskCreate {
-  /* position: absolute; */
-  left: 10px;
-  top: 5px;
-  width: 15vw;
-  height: 40px;
-  min-height: 2.5vh;
-  margin-top: 0.75vh;
-  margin-right: 1vw;
-  margin-left: 1vw;
+  width: 80%;
+  margin-bottom: 25px;
 }
 
 .sideBarButton {
-  /* padding: 10px; */
-  /* border-radius: 0.35em; */
   background-color: rgba(25, 171, 83, 0.4);
   min-width: 300px;
-
   height: 37.5px;
-  /* outline: 2.5px solid white; */
   color: white;
   font-size: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-.sideBarButton:hover {
-  background: var(--clr-accent);
-  border: white;
-  border-style: solid;
 }
 
 .sideBarText {
@@ -312,10 +389,14 @@ a {
   margin: 5px;
 }
 
+.listSummary {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
 .editButton {
   border-radius: 30%;
   display: flex;
-  /* flex-direction: row; */
   margin-right: auto 0;
 }
 
@@ -323,91 +404,80 @@ a {
   border-radius: 30%;
 }
 
-li {
-  border: rgba(72, 135, 201, 0.9);
-  /* background-color: rgba(72, 135, 201, 0.6); */
-
-  border-style: solid;
-  border-width: 2.5px;
-  border-left: none;
-  border-right: none;
-  margin-top: 20px;
-  justify-content: center;
-}
-
-a:hover {
-  box-shadow: 0 0 15px #f1eebd;
-  color: #ffee10;
-  box-shadow: 0 0 5px #ffee10;
-  text-shadow: 0 0 5px #ffee10;
-  color: #fff;
+/* a:hover {
+  box-shadow: 0 0 15px  rgba(70, 53, 208, 1);
+  color: rgba(70, 53, 208, 1);
+  box-shadow: 0 0 5px  rgba(70, 53, 208, 1);
+  text-shadow: 0 0 5px  rgba(70, 53, 208, 1);
+  color:  rgba(70, 53, 208, 1);
   transform: rotateY(360deg);
-}
+} */
 
-ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  list-style: none;
-}
 
-li:hover {
+/* li:hover {
   box-shadow: 15px 15px rgba(72, 135, 201, 0.35),
     0.25em 0 0.4em rgba(72, 135, 201, 0.35);
-}
+} */
 
-
-
-.taskDiv:hover {
+/* .taskDiv:hover {
   box-shadow: 15px 15px rgba(72, 135, 201, 0.35),
     0.25em 0 0.4em rgba(72, 135, 201, 0.35);
-}
-/* .listDiv:hover {
-    box-shadow:  5.5px 7.5px rgba(25, 171, 83, .35), .25em 0 .4em rgba(25, 171, 83, .35);
 } */
 
 .loginFooter {
   display: flex;
   justify-content: center;
   background-color: black;
-  margin-top: 1000px;
-  margin-right: 250px;
-  margin-left: 250px;
+  margin-top: 100px;
+  margin-right: 25px;
+  margin-left: 25px;
+  background-color: rgba(235, 234, 236, 1);
 }
 
 .loginFooter a {
-  color: white;
+  color: rgba(70, 53, 208, 1);
   margin-left: 50px;
   margin-right: 50px;
 }
 
-.splashFooter {
-  position: absolute;
+/* .splashFooter {
   display: flex;
-  justify-content: space-around;
-  /* margin-top: 50vh; */
+  justify-content: space-evenly;
   background-color: rgba(72, 135, 201, 0.35);
 }
 
 .splashFooter a {
-  justify-content: center;
-  margin-right: 2.5vw;
-  margin-left: 2.5vw;
   padding-top: 2vh;
   padding-bottom: 2vh;
+} */
+
+h2 {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(72, 135, 201, 0.35);
+  color: white;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  text-decoration: underline;
 }
 
-.addListButton {
-  width: 150px;
-  margin-bottom: 25px;
+.pleaseSelect {
+  margin-left: 5px;
+  margin-top: 5px;
+  color: white;
 }
-
 
 .logo {
-    /* background-color: white; */
-    font-size: 175%;
-    color: white;
-    font-family: cursive;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.mainImg {
+  height: auto;
+  width: auto;
+  max-width: 150px;
+  max-height: 150px;
+
 }
 
 h1 {
@@ -415,37 +485,104 @@ h1 {
     font-family: cursive;
 }
 
-.deleteListButton {
-    /* background-color: rgba(72, 135, 201, .5);
-    border-radius: 25%; */
-    /* margin-left: 35vw; */
-    float: right;
-
-}
+/* .deleteListButton {
+  float: right;
+} */
 
 .deleteTaskButton {
-    /* margin-left: 30vw; */
-    float: right;
-
+  float: right;
 }
 
 .pleaseAddTask {
     margin-top: 85px;
     text-align: center;
     color: white;
+    margin-top: 85px;
+    text-align: center;
 }
 
 .demoDiv {
     flex-direction: row;
     justify-content: center;
-    outline: 5px black solid;
+    /* outline: 5px black solid; */
     margin-top: 25px;
     margin-left: 40vw;
     margin-right: 40vw;
     border-radius: 10%;
 }
 
-/* .demoDiv {
-    box-shadow: 15px 15px rgba(72, 135, 201, 0.35),
-    0.25em 0 0.4em rgba(72, 135, 201, 0.35);
-} */
+.demoButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  font-size: 20px;
+  background-color: rgba(72, 135, 201, 0.35);
+  border-radius: 10%;
+}
+
+.demoButton:hover {
+  background-color: rgba(72, 135, 201, 0.35);
+  box-shadow:  7.5px 7.5px 7.5px rgba(72, 135, 201, 0.35);
+  transition: 220ms all ease-in-out;
+}
+
+.editTask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 20px;
+}
+
+.editTaskName {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.editTaskStatus {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.editTaskDate {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+  margin-top: 8px;
+}
+
+.editTaskNotes {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.editTaskDetailsButton {
+  margin-top: 8px;
+  margin-left: 100px;
+}
+
+.editList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+}
+
+.editListName {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+}
+
+.editListDetailsButton {
+  margin-top: 8px;
+  margin-left: 100px;
+}
