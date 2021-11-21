@@ -1,5 +1,5 @@
 # Git_It_Done
-http://git-that-doneat-done.herokuapp.com/lists
+http://git-that-done.herokuapp.com/users/login
 Git it Done is a to-do list for the unorganized trying to change their habits; together we'll GIT IT DONE!
 
 * Technologies Used
@@ -19,6 +19,7 @@ Git it Done is a to-do list for the unorganized trying to change their habits; t
   * Lists
     * Users can create, edit, and delete lists
     * Users can see saved data when using demo login
+    * Users can see a summary of their total tasks, completed tasks, and incomplete tasks for each list they click on.
   * Tasks
     * Users can create, edit, and delete tasks
     * Users can mark completed tasks as incomplete
@@ -38,7 +39,7 @@ Git it Done is a to-do list for the unorganized trying to change their habits; t
   * Run npm start
   * Open browser and go to http://localhost:8080/
   * Use demo login or create own user
-  
+
 * Dependencies
   * "bcryptjs": "^2.4.3"
   * "connect-session-sequelize": "^7.0.4"

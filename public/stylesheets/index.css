@@ -18,8 +18,9 @@ body {
 .listDiv {
   display: flex;
   flex-direction: column;
+  align-items: center;
   outline: 1px solid black;
-  width: 150px;
+  width: 250px;
   background-color: rgba(235, 234, 236, 1);
   outline: 2.5px solid white;
   height: 100vh;
@@ -27,9 +28,9 @@ body {
 }
 
 input.addListName {
-  width: 95%;
-  margin-top: 10px;
-  margin-left: 3px;
+  width: 125%;
+  margin-top: 20px;
+  /* margin-left: 3px; */
   align-self: center;
   overflow: hidden;
 }
@@ -39,7 +40,17 @@ input.addListName {
   width: 80%;
   margin-top: 5px;
   margin-bottom: 25px;
-  margin-left: 12px;
+  /* margin-left: 12px; */
+}
+
+.addListForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form.addListForm > ul {
+  width: 125%;
 }
 
 ul {
@@ -58,6 +69,8 @@ li {
   margin-top: 20px;
   justify-content: center; */
   display: inline-flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
   justify-content: space-around;
   width: 98%;
 }
@@ -101,6 +114,8 @@ li:hover{
 
 .taskDetails > P {
   margin-left: 5px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 .taskDiv {
@@ -116,6 +131,10 @@ li:hover{
   margin-bottom: 1.5vh;
   background-color: rgba(1, 41, 84, 0.85);
   color: rgba(235, 234, 236, 1);
+}
+
+.addTask {
+  margin-top: 20px;
 }
 
 input.addTaskName {
@@ -221,18 +240,6 @@ button.addTaskButton {
   max-height: 450px;
 }
 
-button .loginButtonTxt2 {
-  display: none;
-}
-
-.loginButton:hover .loginButtonTxt1 {
-  display: none;
-}
-
-.loginButton:hover .loginButtonTxt2 {
-  display: inline;
-}
-
 .loginButton {
   margin-top: 15px;
   height: 30px;
@@ -315,18 +322,6 @@ button .loginButtonTxt2 {
   transition: 220ms all ease-in-out;
 }
 
-button .registerButtonTxt2 {
-  display: none;
-}
-
-.registerButton:hover .registerButtonTxt1 {
-  display: none;
-}
-
-.registerButton:hover .registerButtonTxt2 {
-  display: inline;
-}
-
 .header {
   display: flex;
   flex-direction: row;
@@ -390,8 +385,10 @@ button .registerButtonTxt2 {
 }
 
 .listSummary {
-  margin-top: 5px;
-  margin-left: 5px;
+  text-align: center;
+  font-size: x-large;
+  margin-top: 20px;
+  /* margin-left: 5px; */
 }
 
 .editButton {
@@ -462,8 +459,10 @@ h2 {
 }
 
 .pleaseSelect {
+  text-align: center;
   margin-left: 5px;
-  margin-top: 5px;
+  margin-top: 20px;
+  font-size: x-large;
   color: white;
 }
 
@@ -481,8 +480,9 @@ h2 {
 }
 
 h1 {
+    text-align: center;
     color: white;
-    font-family: cursive;
+    margin-top: 20px;
 }
 
 /* .deleteListButton {
@@ -502,6 +502,7 @@ h1 {
 }
 
 .demoDiv {
+    display: flex;
     flex-direction: row;
     justify-content: center;
     /* outline: 5px black solid; */
@@ -514,6 +515,7 @@ h1 {
 .demoButton {
   margin-top: 10px;
   margin-bottom: 10px;
+  align-self: center;
   height: 30px;
   font-size: 20px;
   background-color: rgba(72, 135, 201, 0.35);
