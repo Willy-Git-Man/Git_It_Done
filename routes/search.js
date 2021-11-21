@@ -11,6 +11,11 @@ searchRouter.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const { userId } = req.session.auth;
     const isSearch = true;
     const tasks = await db.Task.findAll({
+        include: {
+            model: db.List,
+            required: true,
+            where: { userId: userId }
+          },
         where: {
             taskName: {
                 [Op.iLike]:`%${taskName}%`
