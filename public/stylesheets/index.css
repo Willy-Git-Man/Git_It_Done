@@ -4,7 +4,7 @@ h1 {
 
 body {
   /* background-color: rgba(72, 135, 201, 0.6); */
-  background-color:rgba(235, 234, 236, 1);
+  background-color:rgba(237, 237, 237, 1);
   text-decoration: none;
   color:rgba(70, 53, 208, 1);
 }
@@ -21,7 +21,7 @@ body {
   align-items: center;
   outline: 1px solid black;
   width: 250px;
-  background-color: rgba(235, 234, 236, 1);
+  background-color: rgba(237, 237, 237, 1);
   outline: 2.5px solid white;
   height: 100vh;
   margin-top: 1px;
@@ -424,11 +424,11 @@ button.addTaskButton {
 .loginFooter {
   display: flex;
   justify-content: center;
-  background-color: black;
+  /* background-color: black; */
   margin-top: 100px;
   margin-right: 25px;
   margin-left: 25px;
-  background-color: rgba(235, 234, 236, 1);
+  background-color: rgba(237, 237, 237, 1);
 }
 
 .loginFooter a {
@@ -467,8 +467,9 @@ h2 {
 }
 
 .logo {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-left: 35px;
+  /* margin-top: 15px;
+  margin-bottom: 15px; */
 }
 
 .mainImg {

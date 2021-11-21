@@ -38,11 +38,11 @@ block content
               if task.taskStatus === true
                 a(href=`/lists/${task.listId}/${task.id}` class="taskName complete")=task.taskName
                 a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ✅
-                button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
+                button(class="deleteTaskButton" id=`${task.listId}-${task.id}-delete`) 🗑️
               else
                 a(href=`/lists/${task.listId}/${task.id}` class="taskName")=task.taskName
                 a(href=`/lists/${task.listId}/${task.id}/edit`, class="editTaskButton") ✏️
-                button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
+                button(class="deleteTaskButton" id=`${task.listId}-${task.id}-delete`) 🗑️
 
   div(class='sidebar')
     if isEditList
