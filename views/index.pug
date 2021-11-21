@@ -27,7 +27,7 @@ block content
         input(type="text" name="taskName" class="addTaskName")
         button(class="addTaskButton") Add Task
       else if isSearch
-        p(class="searchResults") Search Results
+        H1(class="searchResults") Search Results
       else
         p(class="pleaseSelect") Please select a List to view your tasks.
       ul
@@ -35,7 +35,7 @@ block content
           each task in tasks
             li(id=`task-${task.id}`)
               if task.taskStatus === true
-                a(href=`/lists/${task.listId}/${task.id}` class="taskName")=task.taskName
+                a(href=`/lists/${task.listId}/${task.id}` class="taskName complete")=task.taskName
                 a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ✅
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               else

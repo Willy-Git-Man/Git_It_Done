@@ -15,7 +15,8 @@ searchRouter.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
             taskName: {
                 [Op.iLike]:`%${taskName}%`
             }
-        }
+        },
+        order: ['taskStatus']
     })
     const lists = await db.List.findAll({
         where: { userId: userId },

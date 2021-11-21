@@ -54,7 +54,7 @@ router.post(
       // if list has no name
       res.redirect("/lists");
     } else {
-      const newList = await db.List.create({
+      await db.List.create({
         listName,
         userId,
       });
@@ -105,7 +105,10 @@ router.get(
     });
     const tasks = await db.Task.findAll({
       where: { listId: listId },
-      order: ['id']
+      order: [
+        ['taskStatus'],
+        ['id'],
+      ]
     });
     const isListSummary = true;
     const taskCount = tasks.length;
@@ -155,7 +158,10 @@ router.post(
     }
     const tasks = await db.Task.findAll({
       where: { listId: listId },
-      order: ['id']
+      order: [
+        ['taskStatus'],
+        ['id'],
+      ]
     });
     res.redirect(`/lists/${listId}`);
   })
@@ -178,7 +184,10 @@ router.get(
     });
     const tasks = await db.Task.findAll({
       where: { listId },
-      order: ['id'],
+      order: [
+        ['taskStatus'],
+        ['id'],
+      ]
     });
     const isTaskDetails = true;
     res.render("index", {
@@ -232,7 +241,10 @@ router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (req
   });
   const tasks = await db.Task.findAll({
     where: { listId: listId },
-    order: ['id'],
+    order: [
+      ['taskStatus'],
+      ['id'],
+    ]
   });
   const isEditList = true;
   res.render('index', {
@@ -295,7 +307,10 @@ router.get('/:listId/:taskId/edit', csrfProtection, requireAuth, asyncHandler(as
   });
   const tasks = await db.Task.findAll({
     where: { listId: listId },
-    order: ['id'],
+    order: [
+      ['taskStatus'],
+      ['id'],
+    ]
   });
   const task = await db.Task.findByPk(taskId);
   res.render(`index`, {

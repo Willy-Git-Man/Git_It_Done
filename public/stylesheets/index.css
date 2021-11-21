@@ -78,6 +78,11 @@ li:hover{
   text-decoration: none;
 }
 
+.incompleteButton {
+  align-items: flex-end;
+  text-decoration: none;
+}
+
 .deleteListButton {
   align-items: flex-end;
   /* margin-right: 2px; */
@@ -113,25 +118,29 @@ li:hover{
 }
 
 input.addTaskName {
-  width: 85%;
+  width: 60%;
   margin-top: 10px;
-  margin-left: 35px;
+  margin-left: 48px;
   align-self: center;
   overflow: hidden;
 }
 
 button.addTaskButton {
   align-self: center;
-  width: 65%;
+  width: 20%;
   margin-top: 5px;
   margin-bottom: 25px;
-  margin-left: 100px;
+  margin-left: 8px;
 }
 
 .taskName {
   width: 300px;
   align-self: flex-start;
   overflow: hidden;
+}
+
+.taskName.complete {
+  text-decoration: line-through;
 }
 
 .editTaskButton {
@@ -352,6 +361,7 @@ button .registerButtonTxt2 {
 
 .searchResults {
   margin-left: 5px;
+  margin-bottom: 10px;
 }
 
 .taskName {
@@ -483,6 +493,8 @@ h1 {
 
 .pleaseAddTask {
     color: white;
+    margin-top: 85px;
+    text-align: center;
 }
 
 .demoDiv {
