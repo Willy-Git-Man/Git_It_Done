@@ -15,9 +15,9 @@ deleteTaskButton.forEach((button) => {
     listSummary.innerHTML = `
       <div class="listSummary">
         <h1> ${listName} List Summary</h1>
-        <p>Total Tasks: ${taskCount}</p>
-        <p>Complete: ${completedCount}</p>
-        <p>Incomplete: ${taskCount - completedCount}</p>
+        <p>Total: ${taskCount} tasks</p>
+        <p>Complete: ${completedCount} tasks</p>
+        <p>Incomplete: ${taskCount - completedCount} tasks</p>
       </div>
     `;
   })
