@@ -89,6 +89,7 @@ li:hover{
 }
 
 .sidebar {
+  color: white;
   outline: 1px solid black;
   width: 44vw;
   margin-top: 1.5vh;
@@ -476,6 +477,7 @@ h2 {
   width: auto;
   max-width: 150px;
   max-height: 150px;
+
 }
 
 h1 {
@@ -492,13 +494,14 @@ h1 {
 }
 
 .pleaseAddTask {
+    margin-top: 85px;
+    text-align: center;
     color: white;
     margin-top: 85px;
     text-align: center;
 }
 
 .demoDiv {
-    display: flex;
     flex-direction: row;
     justify-content: center;
     /* outline: 5px black solid; */
