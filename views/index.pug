@@ -7,84 +7,104 @@ append head
   script(src="/javascripts/deleteTaskScript.js" type="module" defer)
 
 block content
-
-
   div(class='listDiv')
     form(action='/lists' method='post')
       input(type="hidden" name="_csrf" value=csrfToken)
-      input(type="text" name="listName" class="listName")
+      input(type="text" name="listName" class="addListName")
       button(class="addListButton") Add List
       ul
         if lists
           each list in lists
             li(id=`list-${list.id}`)
-              a(href=`/lists/${list.id}`)=list.listName
+              a(href=`/lists/${list.id}` class="listName")=list.listName
               a(href=`/lists/${list.id}/edit` class="editListButton") ✏️
               button(class="deleteListButton" id=`${list.id}-delete`) 🗑️
-              //- a(href=`/lists/${list.id}/delete` class=`${list.id}-deleteListButton`) 🗑️
-              //- form(action=`/lists/${list.id}/delete` method="POST" class="listForm")
-              //-   button(class="deleteButton") 🗑️
 
   div(class='taskDiv')
     form(action=`/lists/${listId}` method="POST" )
       input(type="hidden" name="_csrf" value=csrfToken)
       if listId
-        input(type="text" name="taskName" class="taskName")
+        input(type="text" name="taskName" class="addTaskName")
         button(class="addTaskButton") Add Task
+      else if isSearch
+        p(class="searchResults") Search Results
       else
-        p(class="pleaseAddTask") Please select a List to add a task.
+        p(class="pleaseSelect") Please select a List to view your tasks.
       ul
         if tasks
           each task in tasks
             li(id=`task-${task.id}`)
               if task.taskStatus === true
-                a(href=`/lists/${task.listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${task.listId}/${task.id}` class="taskName")=task.taskName
                 a(href=`/lists/${task.listId}/${task.id}/incomplete`, class="incompleteButton") ✅
-                //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
               else
-                a(href=`/lists/${task.listId}/${task.id}`)=task.taskName
+                a(href=`/lists/${task.listId}/${task.id}` class="taskName")=task.taskName
                 a(href=`/lists/${task.listId}/${task.id}/edit`, class="editTaskButton") ✏️
-                //- a(href=`/lists/${listId}/${task.id}/delete`, class="deleteTaskButton") 🗑️
                 button(class="deleteTaskButton" id=`${listId}-${task.id}-delete`) 🗑️
-              //- form(action=`/lists/${listId}/${task.id}/delete` method="POST" class="taskForm")
-              //-   button(class="deleteButton") 🗑️
-
 
   div(class='sidebar')
     if isEditList
-      form(action=`/lists/${listId}/edit` method="POST" )
-        input(type="hidden" name="_csrf" value=csrfToken)
-        input(type="text" name="listName" class="listName")
-        button(class="saveButton") Save
+      .editList
+        form(action=`/lists/${listId}/edit` method="POST" )
+          input(type="hidden" name="_csrf" value=csrfToken)
+          .editListName
+            label(for="listName") Name:
+            input(type="text" name="listName" class="listName" value=listName)
+          button(class="editListDetailsButton") Save
 
-    if isEditTask
-      form(action=`/lists/${listId}/${taskId}/edit` method="POST" )
-        input(type="hidden" name="_csrf" value=csrfToken)
-        label(for="taskName") Task Name
-        input(type="text" name="taskName" class="taskName" value=task.taskName)
-        select(name="taskStatus", id="taskStatus") Task Status
-          option(value="true") Complete
-          option(value="false" selected="selected") Incomplete
-        label(for="taskDate") Due Date
-        input(type="date" name="taskDate" class="taskDate" value=task.taskDate)
-        label(for="taskNotes") Task Notes
-        textarea(name="taskNotes" id="taskNotes")=task.taskNotes
-        button(class="saveButton") Save
+    else if isEditTask
+      .editTask
+        form(action=`/lists/${listId}/${taskId}/edit` method="POST" )
+          input(type="hidden" name="_csrf" value=csrfToken)
+          .editTaskName
+            label(for="taskName") Name:
+            input(type="text" name="taskName" class="taskName" value=task.taskName)
+          .editTaskStatus
+            label(for="taskName") Status:
+            select(name="taskStatus", id="taskStatus") Status:
+              option(value="true") Complete
+              option(value="false" selected="selected") Incomplete
+          .editTaskDate
+            label(for="taskDate") Due Date:
+            input(type="date" name="taskDate" class="taskDate")
+          .editTaskNotes
+            label(for="taskNotes") Notes:
+            textarea(name="taskNotes" id="taskNotes")=task.taskNotes
+          button(class="editTaskDetailsButton") Save
 
-    if isTaskDetails
-      H1=task.taskName
-      ul
+    else if isTaskDetails
+      .taskDetails
+        H1 #{task.taskName} Task Details
         if task.taskStatus === false
-          li Status: Incomplete
+          p Status: Incomplete
+          p Due Date: #{task.taskDate}
+          p Notes: #{task.taskNotes}
         else
-          li Status: Complete
-        li Due Date: #{task.taskDate}
-        li Notes: #{task.taskNotes}
+          p Status: Complete
+          p Due Date: #{task.taskDate}
+          p Notes: #{task.taskNotes}
 
+    else if isListSummary
+      .listSummary
+        H1 #{listName} List Summary
+        p Total: #{taskCount} tasks
+        p Complete: #{completedCount} tasks
+        p Incomplete: #{taskCount - completedCount} tasks
 
-    footer(class="splashFooter")
-      a(href="https://github.com/Willy-Git-Man") William Grossman
-      a(href="https://github.com/rogdylan98") Dylan Silva
-      a(href="https://github.com/andrwtran") Andrew Tran
-      a(href="https://github.com/zestefano") Zachery Estefano
+    else if isSearch
+
+    else
+      .listSummary
+        H1 Total Summary
+        p Total: #{taskCount} tasks
+        p Complete: #{completedCount} tasks
+        p Incomplete: #{taskCount - completedCount} tasks
+
+//- append foot
+//-   H2 Project Contributors
+//-   .splashFooter
+//-     a(href="https://github.com/Willy-Git-Man") William Grossman
+//-     a(href="https://github.com/rogdylan98") Dylan Silva
+//-     a(href="https://github.com/andrwtran") Andrew Tran
+//-     a(href="https://github.com/zestefano") Zachery Estefano

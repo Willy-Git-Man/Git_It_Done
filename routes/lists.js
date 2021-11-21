@@ -16,9 +16,26 @@ router.get(
       where: { userId: userId },
       order: ['id']
     });
+    const taskCount = await db.Task.count({
+      include: {
+        model: db.List,
+        required: true,
+        where: { userId: userId }
+      },
+    });
+    const completedCount = await db.Task.count({
+      where: { taskStatus: true },
+      include: {
+        model: db.List,
+        required: true,
+        where: { userId: userId }
+      },
+    });
     res.render("index", {
       title: "Git It Done",
       lists,
+      taskCount,
+      completedCount,
       csrfToken: req.csrfToken(),
     });
   })
@@ -45,9 +62,26 @@ router.post(
         where: { userId: userId },
         order: ['id']
       });
+      const taskCount = await db.Task.count({
+        include: {
+          model: db.List,
+          required: true,
+          where: { userId: userId }
+        },
+      });
+      const completedCount = await db.Task.count({
+        where: { taskStatus: true },
+        include: {
+          model: db.List,
+          required: true,
+          where: { userId: userId }
+        },
+      });
       res.render("index", {
         title: "Git It Done",
         lists,
+        taskCount,
+        completedCount,
         csrfToken: req.csrfToken(),
       });
     }
@@ -63,6 +97,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const listId = parseInt(req.params.listId, 10);
+    const list = await db.List.findByPk(listId);
+    const listName = list.listName;
     const lists = await db.List.findAll({
       where: { userId: userId },
       order: ['id']
@@ -71,11 +107,23 @@ router.get(
       where: { listId: listId },
       order: ['id']
     });
+    const isListSummary = true;
+    const taskCount = tasks.length;
+    const completedCount = await db.Task.count({
+      where: {
+        listId: listId,
+        taskStatus: true
+       }
+    });
     res.render("index", {
       title: "Git It Done",
       tasks,
       lists,
       listId,
+      listName,
+      isListSummary,
+      taskCount,
+      completedCount,
       csrfToken: req.csrfToken(),
     });
   })
@@ -113,7 +161,7 @@ router.post(
   })
 );
 
-// GET THE DETAILS FOR A TASK (INCOMPLETE)
+// GET THE DETAILS FOR A TASK
 
 router.get(
   "/:listId/:taskId(\\d+)",
@@ -149,20 +197,26 @@ router.get(
 // DELETE A LIST
 
 router.get('/:listId/delete', requireAuth, asyncHandler(async (req, res) => {
-  console.log("DELETE ROUTE HIT")
   const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
   const list = await db.List.findByPk(listId)
   await list.destroy()
-  // const newList = await db.List.findAll({where: {userId}})
-  return res.json({ listId })
-  // const listId = parseInt(req.params.listId);
-  // const list = await db.List.findOne({
-  //   where: { id: listId },
-  //   order: ['id']
-  // })
-  // await list.destroy()
-  // res.redirect('/lists')
+  const taskCount = await db.Task.count({
+    include: {
+      model: db.List,
+      required: true,
+      where: { userId: userId }
+    },
+  });
+  const completedCount = await db.Task.count({
+    where: { taskStatus: true },
+    include: {
+      model: db.List,
+      required: true,
+      where: { userId: userId }
+    },
+  });
+  return res.json({ taskCount, completedCount })
 }))
 
 //  GET FORM TO EDIT A LIST
@@ -170,11 +224,14 @@ router.get('/:listId/delete', requireAuth, asyncHandler(async (req, res) => {
 router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (req, res) => {
   const { userId } = req.session.auth;
   const listId = parseInt(req.params.listId);
+  const list = await db.List.findByPk(listId);
+  const listName = list.listName
   const lists = await db.List.findAll({
     where: { userId: userId },
     order: ['id'],
   });
   const tasks = await db.Task.findAll({
+    where: { listId: listId },
     order: ['id'],
   });
   const isEditList = true;
@@ -183,6 +240,7 @@ router.get('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (req
     lists,
     tasks,
     listId,
+    listName,
     isEditList,
     csrfToken: req.csrfToken(),
   })
@@ -205,19 +263,23 @@ router.post('/:listId/edit', csrfProtection, requireAuth, asyncHandler(async (re
 // DELETE A TASK
 
 router.get('/:listId/:taskId/delete', requireAuth, asyncHandler(async (req, res) => {
-  // const listId = parseInt(req.params.listId);
-  // const taskId = parseInt(req.params.taskId);
-  // const taskDestroy = await db.Task.findByPk(taskId)
-  // await taskDestroy.destroy()
-  // res.redirect(`/lists/${listId}`)
   const listId = parseInt(req.params.listId);
   const taskId = parseInt(req.params.taskId);
-  console.log(taskId)
   const task = await db.Task.findByPk(taskId)
-  console.log(task)
   await task.destroy()
-  // const newTask = await db.Task.findAll({ where: { listId } })
-  return res.json({ taskId })
+  const list = await db.List.findByPk(listId);
+  const listName = list.listName;
+  const tasks = await db.Task.findAll({
+    where: { listId: listId }
+  });
+  const taskCount = tasks.length;
+  const completedCount = await db.Task.count({
+    where: {
+      listId: listId,
+      taskStatus: true
+     }
+  });
+  return res.json({ taskCount, completedCount, listName })
 }))
 
 // GET FORM TO EDIT A TASK

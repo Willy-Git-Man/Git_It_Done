@@ -5,27 +5,38 @@ html
       title="Git It Done"
       link(rel='stylesheet' href='/stylesheets/index.css')
 
-  h1 Get It Done
+  //- h1 Get It Done
+  if errors
+    div(class='alert alert-danger' role='alert')
+      p The following error(s) occurred:
+      ul
+        each error in errors
+          li= error
+
+  .loginLogo
+    img(src="/images/logo.png" alt="Git It Done" class="loginImg")
 
   .loginFormDiv
     form(action="/users/login" method="POST" class="loginForm")
 
       input(type="hidden" name="_csrf" value=csrfToken)
       label(for="email" class="emailLoginLabel") Email
-      input(type="text" id="email" name="email" required)
+      input(type="text" id="email" name="email")
       label(for="password" class="passwordLoginLabel") Password
-      input(type="text" id="password" name="password" required)
-      button(type="submit" class="loginButton") Login
+      input(type="password" id="password" name="password")
+      button(type="submit" class="loginButton")
+        span(class="loginButtonTxt1") Login
+        span(class="loginButtonTxt2") Done
       a(href="/users/register" class="registerLoginLabel") Create A New Account
 
   form(action="/users/login" method="POST" class="demoDiv")
       input(type="hidden" name="_csrf" value=csrfToken)
       input(type="hidden" name="email" value="test@test.com")
       input(type="hidden" name="password" value="Password!1")
-      button Demo User
+      button(class="demoButton") Demo User
 
-footer(class="loginFooter")
-  a(href="https://github.com/Willy-Git-Man") William Grossman
-  a(href="https://github.com/rogdylan98") Dylan Silva
-  a(href="https://github.com/andrwtran") Andrew Tran
-  a(href="https://github.com/zestefano") Zachery Estefano
+  footer(class="loginFooter")
+    a(href="https://github.com/Willy-Git-Man") William Grossman
+    a(href="https://github.com/rogdylan98") Dylan Silva
+    a(href="https://github.com/andrwtran") Andrew Tran
+    a(href="https://github.com/zestefano") Zachery Estefano

@@ -6,14 +6,14 @@ html
       link(rel='stylesheet' href='/stylesheets/index.css')
 
 
-  //- h1 Register
   if errors
     div(class='alert alert-danger' role='alert')
       p The following error(s) occurred:
       ul
         each error in errors
           li= error
-
+  .registerLogo
+    img(src="/images/logo.png" alt="Git It Done" class="registerImg")
   .registerFormDiv
     form(action="/users/register" method="POST" class="registerForm")
       input(type="hidden" name="_csrf" value=csrfToken)
@@ -27,5 +27,7 @@ html
       input(type="password" id="password" name="password")
       label(for="confirmPassword" class="registerConfirmPassword") Confirm Password
       input(type="password" id="confirmPassword" name="confirmPassword")
-      button(type="submit" class="registerButton") Register
+      button(type="submit" class="registerButton")
+        span(class="registerButtonTxt1") Register
+        span(class="registerButtonTxt2") Done
       a(href="/users/login" class="registerLoginLink") Login

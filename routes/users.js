@@ -83,7 +83,6 @@ router.post(
     const { firstName, lastName, email, password } = req.body;
     const user = await db.User.build({ firstName, lastName, email });
     const validatorErrors = validationResult(req);
-    console.log(validatorErrors)
     if (validatorErrors.isEmpty()) {
       const hashPassword = await bcrypt.hash(password, 10);
       user.hashedPassword = hashPassword;
@@ -92,7 +91,6 @@ router.post(
       return res.redirect("/lists");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
-      console.log(errors)
       res.render("register", {
         title: "Register",
         user,
@@ -111,14 +109,15 @@ const loginValidators = [
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Password'),
 ];
+
 router.get("/login", csrfProtection, (req, res, next) => {
-  console.log(req.csrfToken(), 'helloworld')
   res.render("login",
     {
       title: "Login",
       csrfToken: req.csrfToken(),
     });
 });
+
 router.post('/login', loginValidators, csrfProtection,
   asyncHandler(async (req, res) => {
     const {

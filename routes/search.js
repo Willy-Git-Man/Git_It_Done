@@ -6,9 +6,10 @@ const { csrfProtection, asyncHandler } = require('./utils');
 
 const searchRouter = express.Router();
 
-searchRouter.post('/', asyncHandler(async(req, res, next) => {
+searchRouter.post('/', csrfProtection, asyncHandler(async(req, res, next) => {
     const { taskName } = req.body;
     const { userId } = req.session.auth;
+    const isSearch = true;
     const tasks = await db.Task.findAll({
         where: {
             taskName: {
@@ -16,7 +17,6 @@ searchRouter.post('/', asyncHandler(async(req, res, next) => {
             }
         }
     })
-    console.log(tasks)
     const lists = await db.List.findAll({
         where: { userId: userId },
         order: ['id'],
@@ -25,7 +25,9 @@ searchRouter.post('/', asyncHandler(async(req, res, next) => {
     {
         title: 'Git-It-Done',
         tasks,
-        lists
+        lists,
+        isSearch,
+        csrfToken: req.csrfToken()
     });
 }));
 
