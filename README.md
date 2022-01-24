@@ -1,5 +1,5 @@
 # Git_It_Done
-http://git-that-done.herokuapp.com/users/login
+http://git-that-done.herokuapp.com/
 Git it Done is a to-do list for the unorganized trying to change their habits; together we'll GIT IT DONE!
 
 * Technologies Used
