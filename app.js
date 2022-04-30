@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const listsRouter = require('./routes/lists');
 
-
+const cookie_secret="secret"
 
 const { sessionSecret, environment } = require('./config')
 
@@ -28,6 +28,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(sessionSecret));
+app.use(session({
+  secret: cookie_secret,
+  resave: true,
+  saveUninitialized: true
+}));
+// app.use(express.cookieSession());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
