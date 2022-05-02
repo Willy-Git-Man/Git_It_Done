@@ -10,7 +10,7 @@ block content
   div(class='listDiv')
     form(action='/lists' method='post' class="addListForm")
       input(type="hidden" name="_csrf" value=csrfToken)
-      input(type="text" name="listName" class="addListName")
+      input(type="text" name="listName" class="addListName" required)
       button(class="addListButton") Add List
       ul
         if lists
@@ -25,7 +25,7 @@ block content
       input(type="hidden" name="_csrf" value=csrfToken)
       if listId
         .addTask
-          input(type="text" name="taskName" class="addTaskName")
+          input(type="text" name="taskName" class="addTaskName" required)
           button(class="addTaskButton") Add Task
       else if isSearch
         H1(class="searchResults") Search Results
